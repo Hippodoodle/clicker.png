@@ -10,7 +10,7 @@ Logged in users will be able to upload their own picture to be used as a clicker
 
 ***
 
-​#### Requirements:
+#### Requirements:
 - User can create an account and log in and out.​
 - User can click the 'pixel' button and earn 'pixels'.​
 - User can unlock achievements.​
