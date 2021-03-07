@@ -11,9 +11,9 @@ Logged in users will be able to upload their own picture to be used as a clicker
 ***
 
 #### Requirements:
-- User can create an account and log in and out.​
-- User can click the 'pixel' button and earn 'pixels'.​
+- User must be able to create an account and log in and out.​
+- User must be able to click the clicker button and earn 'pixels'.​
 - User can unlock achievements.​
 - User can upload a picture to be used as the clicker.​
-- User can see the leader board and their position on it (counting total lifetime pixels).​
+- User can see the leader board and their position on it (counting total lifetime pixels) when logged in.​
 - User can purchase in-game upgrades with 'pixels'.​
