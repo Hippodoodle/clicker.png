@@ -22,9 +22,14 @@ class Upgrade(models.Model):
 class Account(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     email = models.EmailField()
-    password = models.CharField()
+    password = models.CharField(max_length=128)
     achievements = models.ManyToManyField(Achievement)
-    upgrades = models.ManyToManyField(Upgrade)
+    upgrades = models.ManyToManyField(Upgrade, through="OwnsUpgrade")
 
     def __str__(self):
         return self.user.username
+
+class OwnsUpgrade(models.Model):
+    account = models.ForeignKey(Account, on_delete=models.CASCADE)
+    upgrade = models.ForeignKey(Upgrade, on_delete=models.CASCADE)
+    quantity = models.IntegerField()
