@@ -21,8 +21,6 @@ class Upgrade(models.Model):
 
 class Account(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    email = models.EmailField()
-    password = models.CharField(max_length=128)
     achievements = models.ManyToManyField(Achievement)
     upgrades = models.ManyToManyField(Upgrade, through="OwnsUpgrade")
 
