@@ -21,7 +21,7 @@ class Upgrade(models.Model):
 
 class Account(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    achievements = models.ManyToManyField(Achievement)
+    achievements = models.ManyToManyField(Achievement, blank=True)
     upgrades = models.ManyToManyField(Upgrade, through="OwnsUpgrade")
 
     def __str__(self):
