@@ -1,7 +1,8 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 
 def index(request):
-    return HttpResponse("This is the index page")
+    return render(request, 'clicker_app/base.html')
 
 def about(request):
     return HttpResponse("This is the about page")
