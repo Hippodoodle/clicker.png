@@ -18,6 +18,7 @@ from django.urls import path, include
 from clicker_app import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('', views.index, name='index'),
     path('clicker_app/', include('clicker_app.urls')),
+    path('admin/', admin.site.urls),
 ]
