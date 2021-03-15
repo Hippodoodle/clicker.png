@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html>
+    <head lang="en">
+        <meta charset="UTF-8" />
+        <title></title>
+    </head>
+    <body>
+        <div>
+            {% block body_block %}
+            {% endblock %} 
+        </div>
+        
+        <ul>
+			This is the tutorial page!
+            <li><a href="{% url 'clicker_app:index' %}">Homepage</a></li>
+            <li><a href="{% url 'clicker_app:about' %}">About</a></li>
+            <li><a href="{% url 'clicker_app:tutorial' %}">Tutorial</a></li>
+        </ul>
+
+    </body>
+</html>
+
+            
