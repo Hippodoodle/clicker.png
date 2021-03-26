@@ -8,20 +8,28 @@ def index(request):
 
 
 def about(request):
-    return HttpResponse("This is the about page")
+    response = render(request, 'clicker_app/about.html')
+    return response
 
 
 def tutorial(request):
-    return HttpResponse("This is the tutorial page")
+    response = render(request, 'clicker_app/tutorial.html')
+    return response
+
 
 
 def login(request):
-    return HttpResponse("This is the login page")
+    response = render(request, 'clicker_app/login.html')
+    return response
+
 
 
 def signup(request):
-    return HttpResponse("This is the signup page")
+    response = render(request, 'clicker_app/signup.html')
+    return response
+
 
 
 def myaccount(request):
-    return HttpResponse("This is the myaccount page")
+    response = render(request, 'clicker_app/myaccount.html')
+    return response
