@@ -3,23 +3,48 @@
 
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8" />
-    <title>Clicker.png</title>
-</head>
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" href="{% static 'stylesheet.css' %}" type="text/css">
+		<title>
+			Clicker.png - 
+			{% block title_block %}
+				default
+			{% endblock %}
+		</title>
+	</head>
 
-<body>
-    <div>
-        {% block body_block %}
-        {% endblock %}
-    </div>
+	<body>
+		<header>
+			<h1>
+				<span><img src="{% static 'images/logo.jpg' %}"
+					 width="95" height="71" 
+					 alt="Logo"/></span>
+				<span id ="logo">Clicker.png</span>
+				<span class="top_right">
+				{% block top_right %}
+					LogIn or MyAccount depending on permission
+				{% endblock %}
+				</span class="top_right">
+			</h1>
+		</header>
+		
+		
+		<h1>
+			{% block body_block %}
+				default block
+			{% endblock %}
+		</h1>
+		
+		
+		<footer>
+			<h1>
+				<span class="foot_link"> <a href="{% url 'clicker_app:index' %}">Homepage</a></span>
+				<span class="foot_link"><a href="{% url 'clicker_app:about' %}">About</a></span>
+				<span class="foot_link"><a href="{% url 'clicker_app:tutorial' %}">Tutorial</a></span>
+			</h1>
+		</footer>
 
-    <ul>
-        <li><a href="{% url 'clicker_app:index' %}">Homepage</a></li>
-        <li><a href="{% url 'clicker_app:about' %}">About</a></li>
-        <li><a href="{% url 'clicker_app:tutorial' %}">Tutorial</a></li>
-    </ul>
-
-</body>
+	</body>
 
 </html>
