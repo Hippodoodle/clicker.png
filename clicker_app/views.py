@@ -64,6 +64,6 @@ def myaccount(request):
     return response
 
 @login_required
-def logout(request):
+def logout_view(request):
     logout(request)
     return redirect(reverse('clicker_app:index'))
