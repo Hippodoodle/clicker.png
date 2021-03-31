@@ -48,8 +48,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+
+    'social_django',
     'clicker_app',
-]
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -59,6 +67,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'clicker_png.urls'
@@ -75,9 +84,41 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
+]
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SITE_ID = 2
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google':{
+        'scope': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS':{
+            'access_type':'online',
+        }
+    }
+}
+
+SOCIAL_AUTH_FACEBOOK_KEY = '2568530290119425'
+SOCIAL_AUTH_FACEBOOK_SECRET = '41ec846575fb2e629a4d3751f49e80d5'
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'user_link']
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {'fields':'id, name, email, link'}
+SOCIAL_AUTH_FACEBOOK_EXTRA_DATA =[
+    ('name', 'name'),
+    ('email', 'email'),
+    ('link', 'profile_url'),
 ]
 
 WSGI_APPLICATION = 'clicker_png.wsgi.application'
@@ -128,6 +169,9 @@ USE_L10N = True
 USE_TZ = True
 
 LOGIN_URL = 'clicker_app:login'
+LOGIN_REDIRECT_URL = 'clicker_app:index'
+LOGOUT_URL = 'clicker_app:myaccount'
+LOGOUT_REDIRECT_URL = 'clicker_app:index'
 
 
 # Static files (CSS, JavaScript, Images)
