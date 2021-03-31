@@ -3,21 +3,21 @@
 {% load staticfiles %}
 
 {% block title_block %}
-	SignUp
+    SignUp
 {% endblock %}
 
 {% block body_block %}
-	<div>
-		{% if registered %}
-		<strong>Thank you for signing up!</strong>
-		{% else %}
-		<strong>Sign up here!</strong>
-		<form id="user_form" method="POST" action="{% url 'clicker_app:signup' %}">
-			{% csrf_token %}
-			{{ user_form.as_p }}
-			<input type="submit" name="submit" value="Sign Up" />
-		</form>
-		{% endif %} 
-	</div>
+    <div>
+        {% if registered %}
+        <strong>Thank you for signing up!</strong>
+        {% else %}
+        <strong>Sign up here!</strong>
+        <form id="user_form" method="POST" action="{% url 'clicker_app:signup' %}">
+            {% csrf_token %}
+            {{ user_form.as_p }}
+            <input type="submit" name="submit" value="Sign Up" />
+        </form>
+        {% endif %} 
+    </div>
 {% endblock %}
  
