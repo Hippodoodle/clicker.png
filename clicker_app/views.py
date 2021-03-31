@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, logout, login
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
+
 def index(request):
     response = render(request, 'clicker_app/base.html')
     return response
@@ -18,7 +19,6 @@ def about(request):
 def tutorial(request):
     response = render(request, 'clicker_app/tutorial.html')
     return response
-
 
 
 def login_view(request):
@@ -40,28 +40,28 @@ def login_view(request):
         return response
 
 
-
 def signup(request):
-    registered = False #registration unsuccessful initially
-    if request.method == 'POST': #if form is post, attempt to process
-        user_form = UserForm(request.POST) #take information from form
+    registered = False  # registration unsuccessful initially
+    if request.method == 'POST':  # if form is post, attempt to process
+        user_form = UserForm(request.POST)  # take information from form
         if user_form.is_valid():
             user = user_form.save()
             user.set_password(user.password)
             user.save()
-            registered = True #save to databbase, registration successful
+            registered = True  # save to databbase, registration successful
         else:
-            print(user_form.errors) #invalid attempt
+            print(user_form.errors)  # invalid attempt
     else:
-        user_form = UserForm() #give blank form ready to receive data
-    response = render(request, 'clicker_app/signup.html', context={'user_form':user_form,'registered':registered})
+        user_form = UserForm()  # give blank form ready to receive data
+    response = render(request, 'clicker_app/signup.html',
+                      context={'user_form': user_form, 'registered': registered})
     return response
-
 
 
 def myaccount(request):
     response = render(request, 'clicker_app/myaccount.html')
     return response
+
 
 @login_required
 def logout_view(request):
