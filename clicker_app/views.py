@@ -59,7 +59,7 @@ def signup(request):
 
 
 def myaccount(request):
-    response = render(request, 'clicker_app/myaccount.html')
+    response = render(request, 'clicker_app/myAccount.html')
     return response
 
 

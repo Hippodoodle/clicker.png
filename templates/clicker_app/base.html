@@ -22,7 +22,7 @@
             <span class="top_right">
                 {% block top_right %}
                 {% if user.is_authenticated %}
-                <a href="{% url 'clicker_app:myaccount' %}">Click here to access your account</a>
+                <a href="{% url 'clicker_app:myAccount' %}">Click here to access your account</a>
                 {% else %}
                 <a href="{% url 'clicker_app:login' %}">Click here to log in</a>
                 {% endif %}
