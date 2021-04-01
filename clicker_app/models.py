@@ -10,14 +10,16 @@ class Achievement(models.Model):
     def __str__(self):
         return self.name
 
+
 class Upgrade(models.Model):
     name = CharField(max_length=128)
-    cost = IntegerField(default=6969) # Noticeable default value to be overriden
+    cost = IntegerField(default=6969)  # Noticeable default value to be overriden
     effect = IntegerField(default=1)
     auto_click = BooleanField(default=True)
 
-    def  __str__(self):
+    def __str__(self):
         return self.name
+
 
 class Account(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -28,6 +30,7 @@ class Account(models.Model):
 
     def __str__(self):
         return self.user.username
+
 
 class OwnsUpgrade(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE)

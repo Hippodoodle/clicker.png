@@ -12,18 +12,18 @@
         <h2 class="center"> STORE</h2>
         <table style="width:97%">
             <tr>
-                <th>Improvement</th>
-                <th>price</th>
-                <th>status</th>
+                <th>Upgrade</th>
+                <th>Price</th>
+                <th>Purchased</th>
             </tr>
             <tr>
                 <td>Editor</td>
-                <th>100</th>
+                <td>100</td>
                 <td>x</td>
             </tr>
             <tr>
                 <td>HD</td>
-                <th>1000</th>
+                <td>1000</td>
                 <td>x</td>
             </tr>
         </table>
@@ -34,7 +34,9 @@
         </h2>
         <img src="{% static 'images/logo.jpg' %}" alt="Clicker image" class="center" id="clicker">
         {% if user.is_authenticated %}
+
         Go to <span><a href="{% url 'clicker_app:myaccount' %}">MyAccount </a></span>
+
         to change your clicker png!
         {% else %}
         <span><a href="{% url 'clicker_app:signup' %}">Sign up </a></span> to upload your own clicker png!

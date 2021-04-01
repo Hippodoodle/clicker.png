@@ -22,6 +22,7 @@
             <span class="top_right">
                 {% block top_right %}
                 {% if user.is_authenticated %}
+
                 <h3>Welcome back {{ user }}!</h3>
                 <button>
                     <a href="{% url 'clicker_app:myaccount' %}">MyAccount</a>
@@ -29,6 +30,8 @@
                 <button>
                     <a href="{% url 'clicker_app:logout' %}">Log out</a>
                 </button>
+
+              
                 {% else %}
                 <button>
                     <a href="{% url 'clicker_app:login' %}">Log in</a>
