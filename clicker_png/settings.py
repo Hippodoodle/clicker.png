@@ -98,13 +98,13 @@ AUTHENTICATION_BACKENDS = (
 SITE_ID = 2
 
 SOCIALACCOUNT_PROVIDERS = {
-    'google':{
+    'google': {
         'scope': [
             'profile',
             'email',
         ],
-        'AUTH_PARAMS':{
-            'access_type':'online',
+        'AUTH_PARAMS': {
+            'access_type': 'online',
         }
     }
 }
@@ -112,8 +112,8 @@ SOCIALACCOUNT_PROVIDERS = {
 SOCIAL_AUTH_FACEBOOK_KEY = '2568530290119425'
 SOCIAL_AUTH_FACEBOOK_SECRET = '41ec846575fb2e629a4d3751f49e80d5'
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'user_link']
-SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {'fields':'id, name, email, link'}
-SOCIAL_AUTH_FACEBOOK_EXTRA_DATA =[
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {'fields': 'id, name, email, link'}
+SOCIAL_AUTH_FACEBOOK_EXTRA_DATA = [
     ('name', 'name'),
     ('email', 'email'),
     ('link', 'profile_url'),
@@ -142,7 +142,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-        'OPTIONS' : {'min_length':6,}
+        'OPTIONS': {'min_length': 6, }
     },
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',

@@ -1,10 +1,10 @@
 import os
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'clicker_png.settings')
 
-import django
+import django  # noqa: E402
 django.setup()
 
-from clicker_app.models import Achievement, Upgrade
+from clicker_app.models import Achievement, Upgrade  # noqa: E402
 
 
 def populate():
