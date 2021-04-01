@@ -22,9 +22,24 @@
             <span class="top_right">
                 {% block top_right %}
                 {% if user.is_authenticated %}
-                <a href="{% url 'clicker_app:myAccount' %}">Click here to access your account</a>
+
+                <h3>Welcome back {{ user }}!</h3>
+                <button>
+                    <a href="{% url 'clicker_app:myaccount' %}">MyAccount</a>
+                </button>
+                <button>
+                    <a href="{% url 'clicker_app:logout' %}">Log out</a>
+                </button>
+
+              
                 {% else %}
-                <a href="{% url 'clicker_app:login' %}">Click here to log in</a>
+                <button>
+                    <a href="{% url 'clicker_app:login' %}">Log in</a>
+                </button>
+                or
+                <button>
+                    <a href="{% url 'clicker_app:signup' %}">Sign up</a>
+                </button>
                 {% endif %}
                 {% endblock %}
             </span class="top_right">
@@ -32,11 +47,13 @@
     </header>
 
 
-    <h1>
-        {% block body_block %}
-        default block
-        {% endblock %}
-    </h1>
+    <container>
+        <h1>
+            {% block body_block %}
+            default block
+            {% endblock %}
+        </h1>
+    </container>
 
 
     <footer>
