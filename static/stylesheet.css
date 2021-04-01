@@ -3,8 +3,19 @@ h1{
 	font-size: 12pt;
 }
 
+h2 {
+	width: 100%;
+	display: inline;
+	font-size: 20pt;
+	text-align: center;
+	padding-left: 5px;
+	padding-right: 5px;
+	margin: 0px;
+}
+
 body{
 	background-color: #CCE6FF;
+	margin: 3px;
 }
 
 header{
@@ -32,4 +43,53 @@ footer{
 
 #logo {
 	font-size: 32pt;
+}
+
+container {
+	position: absolute;
+}
+
+leftpane {
+    width: 400px;
+	height: 100%;
+    float: left;
+	border-right: 2px solid black;
+	position: relative;	
+	padding: 5px;
+	border-collapse: collapse;
+}
+
+middlepane{
+	width: 500px;
+	height: 100%;
+	position: relative;
+	float: left;
+}
+
+rightpane{
+    width: 400px;
+	height: 100%;
+	float: right;
+	border-left: 2px solid black;
+	position: relative;
+}
+
+table, th, td{
+	border: 1px solid black;
+	border-collapse: collapse;
+	position: relative;
+}
+table{
+	margin: 5px;
+	padding-right: 5px;
+}
+.center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 70%;
+}
+#clicker{
+	padding-top: 20px;
+	padding-bottom: 20px;
 }

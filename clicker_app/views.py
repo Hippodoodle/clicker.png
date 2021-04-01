@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 
 
 def index(request):
-    response = render(request, 'clicker_app/base.html')
+    response = render(request, 'clicker_app/index.html')
     return response
 
 

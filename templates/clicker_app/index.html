@@ -1,25 +1,66 @@
 <!DOCTYPE html>
+{% extends 'clicker_app/base.html' %}
 {% load staticfiles %}
 
-<html lang="en">
+{% block title_block %}
+	Home
+{% endblock %}
 
-<head>
-    <meta charset="UTF-8" />
-    <title></title>
-</head>
+{% block body_block %}
+<container>
+    <leftpane>
+        <h2 class="center"> STORE</h2>
+        <table style="width:97%">
+            <tr>
+                <th>Improvement</th>
+                 <th>price</th>
+                <th>status</th>
+            </tr>
+            <tr>
+                <td>Editor</td>
+                 <th>100</th>
+                <td>x</td>
+            </tr>
+            <tr>
+                <td>HD</td>
+                 <th>1000</th>
+                <td>x</td>
+            </tr>
+        </table>
+    </leftpane>
+    <middlepane>
+        <h2 class="center">
+        You have NUMBER HERE pixels!
+        </h2>
+        <img src="{% static 'images/logo.jpg' %}" alt="Clicker image" class="center" id="clicker">
+        {% if user.is_authenticated %}
+            Go to <span><a href="{% url 'clicker_app:MyAccount' %}">MyAccount </a></span>
+            to change your clicker png!
+        {% else %}
+            <span><a href="{% url 'clicker_app:signup' %}">Sign up </a></span> to upload your own clicker png!
+        {% endif %}
+        
+    </middlepane>
+    <rightpane>
+        <h2 class="center"> LEADER BOARD</h2>
+        <table style="width:100%">
+            <tr>
+                <th>Rank</th>
+                <th>Username</th>
+                <th>Score</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>User1</td>
+                <td>500</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>User2</td>
+                <td>1000</td>
+            </tr>
+        </table>
 
-<body>
-    <div>
-        {% block body_block %}
-        {% endblock %}
-    </div>
-
-    <ul>
-        <li><a href="{% url 'clicker_app:index' %}">Homepage</a></li>
-        <li><a href="{% url 'clicker_app:about' %}">About</a></li>
-        <li><a href="{% url 'clicker_app:tutorial' %}">Tutorial</a></li>
-    </ul>
-
-</body>
-
-</html>
+    </rightpane>
+</container>   
+{% endblock %} 
