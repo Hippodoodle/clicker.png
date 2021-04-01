@@ -3,7 +3,7 @@
 {% load staticfiles %}
 
 {% block title_block %}
-	Home
+    Home
 {% endblock %}
 
 {% block body_block %}
@@ -13,33 +13,33 @@
         <table style="width:97%">
             <tr>
                 <th>Improvement</th>
-                 <th>price</th>
+                <th>price</th>
                 <th>status</th>
             </tr>
             <tr>
                 <td>Editor</td>
-                 <th>100</th>
+                <th>100</th>
                 <td>x</td>
             </tr>
             <tr>
                 <td>HD</td>
-                 <th>1000</th>
+                <th>1000</th>
                 <td>x</td>
             </tr>
         </table>
     </leftpane>
     <middlepane>
         <h2 class="center">
-        You have NUMBER HERE pixels!
+            You have NUMBER HERE pixels!
         </h2>
         <img src="{% static 'images/logo.jpg' %}" alt="Clicker image" class="center" id="clicker">
         {% if user.is_authenticated %}
-            Go to <span><a href="{% url 'clicker_app:MyAccount' %}">MyAccount </a></span>
-            to change your clicker png!
+        Go to <span><a href="{% url 'clicker_app:MyAccount' %}">MyAccount </a></span>
+        to change your clicker png!
         {% else %}
-            <span><a href="{% url 'clicker_app:signup' %}">Sign up </a></span> to upload your own clicker png!
+        <span><a href="{% url 'clicker_app:signup' %}">Sign up </a></span> to upload your own clicker png!
         {% endif %}
-        
+
     </middlepane>
     <rightpane>
         <h2 class="center"> LEADER BOARD</h2>
@@ -62,5 +62,5 @@
         </table>
 
     </rightpane>
-</container>   
-{% endblock %} 
+</container>
+{% endblock %}
