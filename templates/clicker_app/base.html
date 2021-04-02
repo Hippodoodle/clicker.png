@@ -31,7 +31,7 @@
                     <a href="{% url 'clicker_app:logout' %}">Log out</a>
                 </button>
 
-              
+
                 {% else %}
                 <button>
                     <a href="{% url 'clicker_app:login' %}">Log in</a>
@@ -63,6 +63,9 @@
             <span class="foot_link"><a href="{% url 'clicker_app:tutorial' %}">Tutorial</a></span>
         </h1>
     </footer>
+
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}" crossorigin="anonymous"></script>
+    <script src="{% static 'js/clicker-ajax.js' %}" crossorigin="anonymous"></script>
 
 </body>
 

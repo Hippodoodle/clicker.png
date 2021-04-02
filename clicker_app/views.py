@@ -95,10 +95,19 @@ def logout_view(request):
     return redirect(reverse('clicker_app:index'))
 
 
-class addPoints(View):
+class AddPoints(View):
+    @login_required
     def get(self, request):
-        user = request.user
-        user.account.points += 1
-        user.account.save()
+        username = request.GET['username']
 
-        return HttpResponse(user.Account.points)
+        try:
+            user_account = Account.objects.get(username=username)
+        except Exception as e:
+            print(e)
+            return HttpResponse(-1)
+
+        user_account.points = str(int(user_account.points) + 1)
+        user_account.lifetime_points = str(int(user_account.lifetime_points) + 1)
+        user_account.save()
+
+        return HttpResponse(user_account.points)

@@ -18,7 +18,7 @@ Home
             </tr>
             {% for key, value in upgrade_table.items %}
             <tr>
-                <td>{{ key }}</td>
+                <td> <button>{{ key }}</button></td>
                 {% for item in value %}
                 <td>{{ item }}</td>
                 {% endfor %}
@@ -28,18 +28,14 @@ Home
     </leftpane>
     <middlepane>
         <h2 class="center">
-            You have {{ user.account.lifetime_points }} pixels!
+            You have <strong id="points_count">{{ user.account.lifetime_points }}</strong> pixels!
         </h2>
+        <button class="btn btn-primary" id="about-btn">
+            Click me - I'm using JQuery!
+        </button>
+
         <p id="hey">1973</p>
-        <img src="{% static 'images/logo.jpg' %}" alt="Clicker image" class="center" id="clicker">
-        <script>
-        document.getElementById("clicker").addEventListener("click", add);
-
-        function add() {
-            document.getElementById("hey").innerHTML = "HEY";
-        }
-
-        </script>
+        <img src="{% static 'images/logo.jpg' %}" alt="Clicker image" class="center" id="clicker" data-user="{{ user }}">
 
         {% if user.is_authenticated %}
         Go to <span><a href="{% url 'clicker_app:myaccount' %}">MyAccount </a></span>
