@@ -1,3 +1,5 @@
+**This is a University of Glasgow CompSci Level 2 group project. We are not interested in outside help or collaboration. Thanks!**
+
 # clicker.png
 
 The objective of our application is to create a clicker game for people to enjoy an easy and casual browser game that can be used for entertainment or as a stress relief tool. ​
