@@ -1,25 +1,29 @@
 $(document).ready(function () {
 
     $('#clicker').click(function () {
-        var username;
-        username = $(this).attr('data-user');
+        var a;
+        a = $(this).attr('data-user');
+        token = $(this).attr('data-csrf');
 
-        $.get('/clicker_app/add_points/', {'username': username},
-            function (data) {
+        $.ajax({
+            url: '/clicker_app/add_points/',
+            type: 'POST',
+            success: function (data) {
                 $('#points_count').html(data);
-            })
+            },
+            headers: {'X-CSRFToken': token},
+            data: {'a': a}
+        })
+
     });
 
-    $('button').hover(
-        function () {
-            $(this).css('color', 'red');
-        },
-        function () {
-            $(this).css('color', 'black');
-        });
+    $('.purchase_button').click(function() {
+        msgStr = $('#hey').html();
+        msgStr = msgStr + ' THERE!';
+        $('#hey').html(msgStr);
+    });
 
-
-    $('#about-btn').click(function() {
+    $('#about-btn').click(function () {
         alert('You clicked the button using JQuery!');
     });
 

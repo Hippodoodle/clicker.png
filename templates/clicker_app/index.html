@@ -18,7 +18,7 @@ Home
             </tr>
             {% for key, value in upgrade_table.items %}
             <tr>
-                <td> <button>{{ key }}</button></td>
+                <td> <button class="purchase_button">{{ key }}</button></td>
                 {% for item in value %}
                 <td>{{ item }}</td>
                 {% endfor %}
@@ -34,8 +34,9 @@ Home
             Click me - I'm using JQuery!
         </button>
 
-        <p id="hey">1973</p>
-        <img src="{% static 'images/logo.jpg' %}" alt="Clicker image" class="center" id="clicker" data-user="{{ user }}">
+        <p id="hey">HELLO</p>
+
+        <img src="{% static 'images/logo.jpg' %}" alt="Clicker image" class="center" id="clicker" data-user="{{ user.id }}" data-csrf="{{ csrf_token }}">
 
         {% if user.is_authenticated %}
         Go to <span><a href="{% url 'clicker_app:myaccount' %}">MyAccount </a></span>

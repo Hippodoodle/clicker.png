@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from clicker_app.forms import UserForm
-from django.contrib.auth import authenticate, logout, login
+from django.contrib.auth import authenticate, default_app_config, logout, login
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from clicker_app.models import Achievement, Upgrade, Account, OwnsUpgrade  # noqa: F401
@@ -96,12 +96,11 @@ def logout_view(request):
 
 
 class AddPoints(View):
-    @login_required
-    def get(self, request):
-        username = request.GET['username']
+    def post(self, request):
+        a = request.POST.get('a', None)
 
         try:
-            user_account = Account.objects.get(username=username)
+            user_account = Account.objects.get(user__id=a)
         except Exception as e:
             print(e)
             return HttpResponse(-1)
