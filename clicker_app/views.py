@@ -4,7 +4,7 @@ from clicker_app.forms import UserForm
 from django.contrib.auth import authenticate, logout, login
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-from clicker_app.models import Achievement, Upgrade, Account, OwnsUpgrade
+from clicker_app.models import Achievement, Upgrade, Account, OwnsUpgrade  # noqa: F401
 
 
 def index(request):
@@ -30,15 +30,6 @@ def index(request):
             upgrade_table_dict[p.upgrade.name][1] = p.quantity
 
     print(upgrade_table_dict)
-
-
-    #for i in range(len(upgrades_list)):
-    #    print(upgrades_list[i])
-    #    for item in purchased_list:
-    #        if upgrades_list[i] == item.upgrade:
-    #            print('ayy' , item.quantity)
-
-
 
     # TODO: remove list index for whole leaderboard  when scrolling is implememnted
     leaderboard_list = Account.objects.order_by('-lifetime_points')[:10]
