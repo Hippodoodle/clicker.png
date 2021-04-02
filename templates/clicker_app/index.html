@@ -9,7 +9,7 @@ Home
 {% block body_block %}
 <container>
     <leftpane>
-        <h2 class="center"> STORE</h2>
+        <h2 class="center">STORE</h2>
         <table style="width:97%">
             <tr>
                 <th>Upgrade</th>
@@ -30,20 +30,14 @@ Home
         <h2 class="center">
             You have {{ user.account.lifetime_points }} pixels!
         </h2>
-        <img src="{% static 'images/logo.jpg' %}" alt="Clicker image" class="center" id="clicker" onclick="add()">
+        <p id="hey">1973</p>
+        <img src="{% static 'images/logo.jpg' %}" alt="Clicker image" class="center" id="clicker">
         <script>
+        document.getElementById("clicker").addEventListener("click", add);
 
-            $(document).ready(function () {
-                $('#clicker').click(function () {
-                    var username;
-                    username = $(this).attr('data-username');
-
-                    $.get('clicker_app/add_points/',
-                        function (data) {
-                            $('#points').html(data)
-                        })
-                });
-            });
+        function add() {
+            document.getElementById("hey").innerHTML = "HEY";
+        }
 
         </script>
 
