@@ -4,10 +4,49 @@ from clicker_app.forms import UserForm
 from django.contrib.auth import authenticate, logout, login
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from clicker_app.models import Achievement, Upgrade, Account, OwnsUpgrade
 
 
 def index(request):
-    response = render(request, 'clicker_app/index.html')
+
+    upgrades_list = Upgrade.objects.order_by('cost')
+    upgrade_table_dict = {}
+    upgrade_table_list = []
+
+    for item in upgrades_list:
+        upgrade_table_dict[item.name] = [item.cost, 0]
+        upgrade_table_list.append([item.name, item.cost, 0])
+
+    if request.user.is_authenticated:
+        purchased_list = OwnsUpgrade.objects.filter(account=request.user.account)
+    else:
+        purchased_list = []
+
+    print(upgrade_table_dict)
+    print(upgrade_table_list)
+
+    for p in purchased_list:
+        if p.upgrade.name in upgrade_table_dict.keys():
+            upgrade_table_dict[p.upgrade.name][1] = p.quantity
+
+    print(upgrade_table_dict)
+
+
+    #for i in range(len(upgrades_list)):
+    #    print(upgrades_list[i])
+    #    for item in purchased_list:
+    #        if upgrades_list[i] == item.upgrade:
+    #            print('ayy' , item.quantity)
+
+
+
+    # TODO: remove list index for whole leaderboard  when scrolling is implememnted
+    leaderboard_list = Account.objects.order_by('-lifetime_points')[:10]
+
+    context_dict = {}
+    context_dict['leaderboard'] = leaderboard_list
+    context_dict['upgrade_table'] = upgrade_table_dict
+    response = render(request, 'clicker_app/index.html', context=context_dict)
     return response
 
 
