@@ -4,6 +4,8 @@ from clicker_app.forms import UserForm
 from django.contrib.auth import authenticate, logout, login
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from clicker_app.models import Account, User
+from django.views import View
 
 
 def index(request):
@@ -59,7 +61,7 @@ def signup(request):
 
 
 def myaccount(request):
-    response = render(request, 'clicker_app/myaccount.html')
+    response = render(request, 'clicker_app/myAccount.html')
     return response
 
 
@@ -67,3 +69,17 @@ def myaccount(request):
 def logout_view(request):
     logout(request)
     return redirect(reverse('clicker_app:index'))
+
+
+class addPoints(View):
+    def get(self, request):
+        username = request.GET['username']
+
+        user = User.objects.get(username=username)
+        user.Account.points += 1
+        user.save()
+
+        return HttpResponse(user.Account.points)
+        
+
+
