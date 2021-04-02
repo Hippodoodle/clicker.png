@@ -6,6 +6,11 @@
 <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="{% static 'stylesheet.css' %}" type="text/css">
+    {% if user.account.darkmode %}
+    <link rel="stylesheet" href="{% static 'dark.css' %}" type="text/css">
+    {% else %}
+    <link rel="stylesheet" href="{% static 'light.css' %}" type="text/css">
+    {% endif %}
     <title>
         Clicker.png -
         {% block title_block %}
