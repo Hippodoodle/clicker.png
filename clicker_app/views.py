@@ -74,6 +74,11 @@ def signup(request):
             user = user_form.save()
             user.set_password(user.password)
             user.save()
+
+            account = Account.objects.create(user=user)
+            account.user = user
+            account.save()
+
             registered = True  # save to databbase, registration successful
         else:
             print(user_form.errors)  # invalid attempt
