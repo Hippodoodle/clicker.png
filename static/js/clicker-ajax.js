@@ -10,6 +10,7 @@ $(document).ready(function () {
             type: 'POST',
             success: function (data) {
                 $('#points_count').html(data);
+                $('#user-counter').html(data);
             },
             headers: {'X-CSRFToken': token},
             data: {'a': a}
@@ -21,10 +22,6 @@ $(document).ready(function () {
         msgStr = $('#hey').html();
         msgStr = msgStr + ' THERE!';
         $('#hey').html(msgStr);
-    });
-
-    $('#about-btn').click(function () {
-        alert('You clicked the button using JQuery!');
     });
 
 });

@@ -12,20 +12,20 @@ def index(request):
 
     upgrades_list = Upgrade.objects.order_by('cost')
     upgrade_table_dict = {}
-    upgrade_table_list = []
 
     for item in upgrades_list:
-        upgrade_table_dict[item.name] = [item.cost, 0]
-        upgrade_table_list.append([item.name, item.cost, 0])
+        upgrade_table_dict[item] = [item.cost, 0]
 
     if request.user.is_authenticated:
         purchased_list = OwnsUpgrade.objects.filter(account=request.user.account)
     else:
         purchased_list = []
 
+    print(upgrade_table_dict.keys())
+
     for p in purchased_list:
-        if p.upgrade.name in upgrade_table_dict.keys():
-            upgrade_table_dict[p.upgrade.name][1] = p.quantity
+        if p.upgrade in upgrade_table_dict.keys():
+            upgrade_table_dict[p.upgrade][1] = p.quantity
 
     # TODO: remove list index for whole leaderboard  when scrolling is implememnted
     leaderboard_list = Account.objects.order_by('-lifetime_points')[:10]

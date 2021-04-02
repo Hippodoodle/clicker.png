@@ -18,7 +18,7 @@ Home
             </tr>
             {% for key, value in upgrade_table.items %}
             <tr>
-                <td> <button class="purchase_button">{{ key }}</button></td>
+                <td> <button id="{{ key.id }}" class="purchase_button">{{ key.name }}</button></td>
                 {% for item in value %}
                 <td>{{ item }}</td>
                 {% endfor %}
@@ -30,9 +30,6 @@ Home
         <h2 class="center">
             You have <strong id="points_count">{{ user.account.lifetime_points }}</strong> pixels!
         </h2>
-        <button class="btn btn-primary" id="about-btn">
-            Click me - I'm using JQuery!
-        </button>
 
         <p id="hey">HELLO</p>
 
@@ -58,7 +55,9 @@ Home
             <tr>
                 <td>{{forloop.counter}}</td>
                 <td>{{ account.user.username }}</td>
-                <td>{{ account.lifetime_points }}</td>
+                <td>
+                {% if account.user == request.user %}<span id="user-counter">{{ account.lifetime_points }}</span>{% else %}{{ account.lifetime_points }}{% endif %}
+                </td>
             </tr>
             {% endfor %}
         </table>
