@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from clicker_app.forms import UserForm
-from django.contrib.auth import authenticate, default_app_config, logout, login
+from django.contrib.auth import authenticate, default_app_config, logout, login  # noqa: F401
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from clicker_app.models import Achievement, Upgrade, Account, OwnsUpgrade  # noqa: F401
