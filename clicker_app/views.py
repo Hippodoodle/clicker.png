@@ -21,8 +21,6 @@ def index(request):
     else:
         purchased_list = []
 
-    print(upgrade_table_dict.keys())
-
     for p in purchased_list:
         if p.upgrade in upgrade_table_dict.keys():
             upgrade_table_dict[p.upgrade][1] = p.quantity
