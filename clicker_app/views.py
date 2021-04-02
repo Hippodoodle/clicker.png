@@ -22,14 +22,9 @@ def index(request):
     else:
         purchased_list = []
 
-    print(upgrade_table_dict)
-    print(upgrade_table_list)
-
     for p in purchased_list:
         if p.upgrade.name in upgrade_table_dict.keys():
             upgrade_table_dict[p.upgrade.name][1] = p.quantity
-
-    print(upgrade_table_dict)
 
     # TODO: remove list index for whole leaderboard  when scrolling is implememnted
     leaderboard_list = Account.objects.order_by('-lifetime_points')[:10]
