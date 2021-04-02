@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block body_block %}
-
+<container>
     <leftpane>
         <h2 class="center"> STORE</h2>
         <table style="width:97%">
@@ -30,11 +30,28 @@
         <h2 class="center">
             You have {{ user.account.lifetime_points }} pixels!
         </h2>
-        <img src="{% static 'images/logo.jpg' %}" alt="Clicker image" class="center" id="clicker">
+        <img src="{% static 'images/logo.jpg' %}" alt="Clicker image" class="center" id="clickerimg" onclick="add()">
+
+        <button id='clicker' data-username="{{ request.user.username }} " type="button">image clicker</button>
+        <strong id="points"> {{ request.user.Account.points }} </strong> points
+       <script>
+
+            $(document).ready(function(){
+                $('#clicker').click(function(){
+                    var username;
+                    username = $(this).attr('data-username');
+
+                    $.get('clicker_app/add_points/', 
+                        function(data){
+                            $('#points').html(data)
+                        })
+                });
+            });
+
+        </script>
+
         {% if user.is_authenticated %}
-
         Go to <span><a href="{% url 'clicker_app:myaccount' %}">MyAccount </a></span>
-
         to change your clicker png!
         {% else %}
         <span><a href="{% url 'clicker_app:signup' %}">Sign up </a></span> to upload your own clicker png!
@@ -61,5 +78,5 @@
             Your ranking is: {{ranking}}
         </button>
     </rightpane>
-
+</container>
 {% endblock %}

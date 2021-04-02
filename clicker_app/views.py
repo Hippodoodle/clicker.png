@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, logout, login
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from clicker_app.models import Achievement, Upgrade, Account, OwnsUpgrade  # noqa: F401
+from django.views import View
 
 
 def index(request):
@@ -92,3 +93,12 @@ def myaccount(request):
 def logout_view(request):
     logout(request)
     return redirect(reverse('clicker_app:index'))
+
+
+class addPoints(View):
+    def get(self, request):
+        user = request.user
+        user.account.points += 1
+        user.account.save()
+
+        return HttpResponse(user.Account.points)
