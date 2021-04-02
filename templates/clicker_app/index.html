@@ -18,7 +18,7 @@ Home
             </tr>
             {% for key, value in upgrade_table.items %}
             <tr>
-                <td>{{ key }}</td>
+                <td> <button id="upgrade-{{ key.id }}" class="purchase_button">{{ key.name }}</button></td>
                 {% for item in value %}
                 <td>{{ item }}</td>
                 {% endfor %}
@@ -28,18 +28,12 @@ Home
     </leftpane>
     <middlepane>
         <h2 class="center">
-            You have {{ user.account.lifetime_points }} pixels!
+            You have <strong id="points_count">{{ user.account.lifetime_points }}</strong> pixels!
         </h2>
-        <p id="hey">1973</p>
-        <img src="{% static 'images/logo.jpg' %}" alt="Clicker image" class="center" id="clicker">
-        <script>
-        document.getElementById("clicker").addEventListener("click", add);
 
-        function add() {
-            document.getElementById("hey").innerHTML = "HEY";
-        }
+        <p id="hey">HELLO</p>
 
-        </script>
+        <img src="{% static 'images/logo.jpg' %}" alt="Clicker image" class="center" id="clicker" data-user="{{ user.id }}" data-csrf="{{ csrf_token }}">
 
         {% if user.is_authenticated %}
         Go to <span><a href="{% url 'clicker_app:myaccount' %}">MyAccount </a></span>
@@ -61,7 +55,9 @@ Home
             <tr>
                 <td>{{forloop.counter}}</td>
                 <td>{{ account.user.username }}</td>
-                <td>{{ account.lifetime_points }}</td>
+                <td>
+                {% if account.user == request.user %}<span id="user-counter">{{ account.lifetime_points }}</span>{% else %}{{ account.lifetime_points }}{% endif %}
+                </td>
             </tr>
             {% endfor %}
         </table>

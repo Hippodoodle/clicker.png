@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from clicker_app.forms import UserForm
-from django.contrib.auth import authenticate, logout, login
+from django.contrib.auth import authenticate, default_app_config, logout, login  # noqa: F401
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from clicker_app.models import Achievement, Upgrade, Account, OwnsUpgrade  # noqa: F401
@@ -12,20 +12,20 @@ def index(request):
 
     upgrades_list = Upgrade.objects.order_by('cost')
     upgrade_table_dict = {}
-    upgrade_table_list = []
 
     for item in upgrades_list:
-        upgrade_table_dict[item.name] = [item.cost, 0]
-        upgrade_table_list.append([item.name, item.cost, 0])
+        upgrade_table_dict[item] = [item.cost, 0]
 
     if request.user.is_authenticated:
         purchased_list = OwnsUpgrade.objects.filter(account=request.user.account)
     else:
         purchased_list = []
 
+    print(upgrade_table_dict.keys())
+
     for p in purchased_list:
-        if p.upgrade.name in upgrade_table_dict.keys():
-            upgrade_table_dict[p.upgrade.name][1] = p.quantity
+        if p.upgrade in upgrade_table_dict.keys():
+            upgrade_table_dict[p.upgrade][1] = p.quantity
 
     # TODO: remove list index for whole leaderboard  when scrolling is implememnted
     leaderboard_list = Account.objects.order_by('-lifetime_points')[:10]
@@ -100,10 +100,18 @@ def logout_view(request):
     return redirect(reverse('clicker_app:index'))
 
 
-class addPoints(View):
-    def get(self, request):
-        user = request.user
-        user.account.points += 1
-        user.account.save()
+class AddPoints(View):
+    def post(self, request):
+        a = request.POST.get('a', None)
 
-        return HttpResponse(user.Account.points)
+        try:
+            user_account = Account.objects.get(user__id=a)
+        except Exception as e:
+            print(e)
+            return HttpResponse(-1)
+
+        user_account.points = str(int(user_account.points) + 1)
+        user_account.lifetime_points = str(int(user_account.lifetime_points) + 1)
+        user_account.save()
+
+        return HttpResponse(user_account.points)

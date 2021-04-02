@@ -44,6 +44,11 @@ button{
 	font-size: 16pt;
 	background-color: #a8d0f5;
 	margin-left: 5px;
+    transition: color 0.3s ease;
+}
+
+button:hover {
+    color: darkorange;
 }
 
 footer{
