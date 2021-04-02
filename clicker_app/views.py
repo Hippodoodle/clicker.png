@@ -4,12 +4,36 @@ from clicker_app.forms import UserForm
 from django.contrib.auth import authenticate, logout, login
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-from clicker_app.models import Account, User
+from clicker_app.models import Achievement, Upgrade, Account, OwnsUpgrade  # noqa: F401
 from django.views import View
 
 
 def index(request):
-    response = render(request, 'clicker_app/index.html')
+
+    upgrades_list = Upgrade.objects.order_by('cost')
+    upgrade_table_dict = {}
+    upgrade_table_list = []
+
+    for item in upgrades_list:
+        upgrade_table_dict[item.name] = [item.cost, 0]
+        upgrade_table_list.append([item.name, item.cost, 0])
+
+    if request.user.is_authenticated:
+        purchased_list = OwnsUpgrade.objects.filter(account=request.user.account)
+    else:
+        purchased_list = []
+
+    for p in purchased_list:
+        if p.upgrade.name in upgrade_table_dict.keys():
+            upgrade_table_dict[p.upgrade.name][1] = p.quantity
+
+    # TODO: remove list index for whole leaderboard  when scrolling is implememnted
+    leaderboard_list = Account.objects.order_by('-lifetime_points')[:10]
+
+    context_dict = {}
+    context_dict['leaderboard'] = leaderboard_list
+    context_dict['upgrade_table'] = upgrade_table_dict
+    response = render(request, 'clicker_app/index.html', context=context_dict)
     return response
 
 
@@ -61,7 +85,7 @@ def signup(request):
 
 
 def myaccount(request):
-    response = render(request, 'clicker_app/myAccount.html')
+    response = render(request, 'clicker_app/myaccount.html')
     return response
 
 
@@ -73,13 +97,8 @@ def logout_view(request):
 
 class addPoints(View):
     def get(self, request):
-        username = request.GET['username']
-
-        user = User.objects.get(username=username)
-        user.Account.points += 1
-        user.save()
+        user = request.user
+        user.account.points += 1
+        user.account.save()
 
         return HttpResponse(user.Account.points)
-        
-
-
