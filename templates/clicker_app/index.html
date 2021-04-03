@@ -9,7 +9,7 @@ Home
 {% block body_block %}
 <leftpane>
     <h2 class="pane-title">STORE</h2>
-    <table style="width:97%">
+    <table>
         <tr>
             <th>Upgrade</th>
             <th>Price</th>
@@ -18,9 +18,19 @@ Home
         </tr>
         {% for key, value in upgrade_table.items %}
         <tr>
-            <td><button id="upgrade-{{ key.id }}" class="purchase_button">{{ key.name }}</button></td>
+            <td><button id="upgrade-{{ key.id }}" class="purchase_button" data-user="{{ user.id }}" data-upgrade="{{ key.id }}" data-csrf="{{ csrf_token }}">{{ key.name }}</button></td>
             {% for item in value %}
-            <td>{{ item }}</td>
+            <td id="upgrade-{{ key.id }}-{{ forloop.counter }}" class="upgrade-values">
+                {% if forloop.counter == 1 %}
+                <script>
+                    x = {% for item in purchased_list %}{% if item.upgrade == key %}{{ item.upgrade.cost }}{% endif %}{% endfor %};
+                    x = x * {% for item in purchased_list %}{% if item.upgrade == key %}{{ item.quantity }}{% endif %}{% endfor %} * 0.5;
+                    document.getElementById("upgrade-{{ key.id }}-1").innerHTML = Math.floor(x);
+                </script>
+                {% else %}
+                {{ item }}
+                {% endif %}
+            </td>
             {% endfor %}
             <td>{{ key.auto_click }}</td>
         </tr>
@@ -29,18 +39,16 @@ Home
 </leftpane>
 <middlepane>
     <h2 class="pane-title">You have <strong id="points_count">{{ user.account.lifetime_points }}</strong> pixels!</h2>
-    <p id="hey">HELLO</p>
     <img src="{% static 'images/logo.jpg' %}" alt="Clicker image" id="clicker" data-user="{{ user.id }}" data-csrf="{{ csrf_token }}">
     {% if user.is_authenticated %}
     <p id="upload-png-message">Go to <a href="{% url 'clicker_app:myaccount' %}">My Account</a> to change your clicker png!</p>
     {% else %}
-    <p id="upload-png-message"><a href="{% url 'clicker_app:signup' %}">Sign Up </a> to upload your own clicker png!</p>
+    <p id="upload-png-message"><a href="{% url 'clicker_app:signup' %}">Sign Up</a> to upload your own clicker png!</p>
     {% endif %}
-
 </middlepane>
 <rightpane>
     <h2 class="pane-title">LEADERBOARD</h2>
-    <table style="width:100%">
+    <table>
         <tr>
             <th>Rank</th>
             <th>Username</th>

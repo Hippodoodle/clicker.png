@@ -36,4 +36,4 @@ class Account(models.Model):
 class OwnsUpgrade(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
     upgrade = models.ForeignKey(Upgrade, on_delete=models.CASCADE)
-    quantity = models.IntegerField()
+    quantity = models.IntegerField(default=0)
