@@ -194,3 +194,9 @@ table{
 	right: 5%;
 	text-align: center;
 }
+
+.bottom0-left0{
+	position: absolute;
+	left:0;
+	bottom:0;
+}
