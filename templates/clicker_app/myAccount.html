@@ -9,9 +9,9 @@
 {% block body_block %}
     This is the myAccount page bodyblock
     <a href="{% url 'clicker_app:logout' %}">Click here to log out</a>
-    {% if user.account.darkmode %}
-    <button id="dark-to-light" class="darkmode-button">Lightmode</button>
-    {% else %}
-    <button id="light-to-dark" class="darkmode-button">Darkmode</button>
-    {% endif %}
+    <form method="POST" action="/clicker_app/darkmode/">
+        {% csrf_token %}
+        <input type="hidden" name="user-id" value="{{ user.id }}">
+        <input type="submit" value="{% if user.account.darkmode %}Lightmode{% else %}Darkmode{% endif %}">
+    </form>
 {% endblock %}

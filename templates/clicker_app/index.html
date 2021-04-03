@@ -36,7 +36,7 @@ Home
         <img src="{% static 'images/logo.jpg' %}" alt="Clicker image" class="center" id="clicker" data-user="{{ user.id }}" data-csrf="{{ csrf_token }}">
 
         {% if user.is_authenticated %}
-        Go to <span><a href="{% url 'clicker_app:myaccount' %}">MyAccount </a></span>
+        Go to <span><a href="{% url 'clicker_app:myaccount' %}">My Account</a> </span>
         to change your clicker png!
         {% else %}
         <span><a href="{% url 'clicker_app:signup' %}">Sign up </a></span> to upload your own clicker png!

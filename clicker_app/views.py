@@ -117,18 +117,15 @@ class AddPoints(View):
 
 class Darkmode(View):
     def post(self, request):
-        a = request.POST.get('a', None)
+        user_id = request.POST.get('user-id', None)
 
         try:
-            user_account = Account.objects.get(user__id=a)
+            user_account = Account.objects.get(user__id=user_id)
         except Exception as e:
             print(e)
             return HttpResponse(-1)
 
-        if user_account.darkmode:
-            user_account.darkmode = False
-        else:
-            user_account.darkmode = True
+        user_account.darkmode = not user_account.darkmode
         user_account.save()
 
-        return HttpResponse(user_account.darkmode)
+        return redirect(request.META.get("HTTP_REFERER"))

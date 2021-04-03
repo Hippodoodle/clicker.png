@@ -17,13 +17,13 @@ $(document).ready(function () {
         })
     });
 
-    $('.darkmode-button').click(function () {
-        var a;
-        a = $(this).attr('data-user');
+    $('#darkmode-button').click(function () {
+        var d;
+        d = $(this).attr('data-user');
         token = $(this).attr('data-csrf');
 
         $.ajax({
-            url: '/clicker_app/myaccount/darkmode/',
+            url: '/clicker_app/darkmode/',
             type: 'POST',
             success: function (data) {
                 $('#darkmode-button').html(data);

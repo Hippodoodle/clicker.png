@@ -29,13 +29,8 @@
                 {% if user.is_authenticated %}
 
                 <h3>Welcome back {{ user }}!</h3>
-                <button>
-                    <a href="{% url 'clicker_app:myaccount' %}">MyAccount</a>
-                </button>
-                <button>
-                    <a href="{% url 'clicker_app:logout' %}">Log out</a>
-                </button>
-
+                <a href="{% url 'clicker_app:myaccount' %}">My Account</a>
+                <a href="{% url 'clicker_app:logout' %}">Log out</a>
 
                 {% else %}
                 <button>
@@ -51,7 +46,6 @@
         </h1>
     </header>
 
-
     <container>
         <h1>
             {% block body_block %}
@@ -59,7 +53,6 @@
             {% endblock %}
         </h1>
     </container>
-
 
     <footer>
         <h1>
