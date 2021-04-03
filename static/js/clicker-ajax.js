@@ -29,14 +29,33 @@ $(document).ready(function () {
                 $('#darkmode-button').html(data);
             },
             headers: {'X-CSRFToken': token},
-            data: {'d': d}
+            data: {'user-id': d}
         })
     });
 
-    $('.purchase_button').click(function() {
-        msgStr = $('#hey').html();
-        msgStr = msgStr + ' THERE!';
-        $('#hey').html(msgStr);
+    $('.purchase_button').click(function () {
+        var a = $(this).attr('data-user');
+        var token = $(this).attr('data-csrf');
+        var upgrade = $(this).attr('data-upgrade');
+
+        var s11 = '#upgrade-'
+        var s12 = String(upgrade)
+        var s13 = '-1'
+        var s1 =  s11.concat(s12, s13);
+
+        var s23 = '-2'
+        var s2 =  s11.concat(s12, s23);
+
+        $.ajax({
+            url: '/clicker_app/purchase/',
+            type: 'POST',
+            success: function (data) {
+                $(s1).html(data.split("?")[0]);
+                $(s2).html(data.split("?")[1]);
+            },
+            headers: {'X-CSRFToken': token},
+            data: {'user-id': a, 'upgrade': upgrade}
+        })
     });
 
 });

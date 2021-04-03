@@ -31,6 +31,7 @@ def index(request):
     context_dict = {}
     context_dict['leaderboard'] = leaderboard_list
     context_dict['upgrade_table'] = upgrade_table_dict
+    context_dict['purchased_list'] = purchased_list
     response = render(request, 'clicker_app/index.html', context=context_dict)
     return response
 
@@ -129,3 +130,25 @@ class Darkmode(View):
         user_account.save()
 
         return redirect(request.META.get("HTTP_REFERER"))
+
+
+class Purchase(View):
+    def post(self, request):
+        user_id = request.POST.get('user-id', None)
+        upgrade = request.POST.get('upgrade', None)
+
+        try:
+            user_account = Account.objects.get(user__id=user_id)
+            upgrade_instance = Upgrade.objects.get(id=upgrade)
+            owns_upgrade = OwnsUpgrade.objects.get_or_create(account=user_account, upgrade=upgrade_instance)[0]
+        except Exception:
+            return HttpResponse("-1?-1")
+
+        owns_upgrade.quantity += 1
+        owns_upgrade.save()
+
+        cost_instance = int(owns_upgrade.upgrade.cost*owns_upgrade.quantity*0.5)
+
+        print(str(cost_instance)+"?"+str(owns_upgrade.quantity))
+
+        return HttpResponse(str(cost_instance)+"?"+str(owns_upgrade.quantity))

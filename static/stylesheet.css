@@ -65,16 +65,21 @@ input[type=submit]{
     display:inline;
     text-align: center;
     border: 2px solid var(--border-color);
-    padding-right: 5px;
-    padding-left: 5px;
+    margin: 5px;
     font-size: 16pt;
+    color: var(--text-color);
     background-color: var(--color-2);
     margin-left: 5px;
     transition: color 0.3s ease;
 }
 
 .purchase_button:hover {
-    background-color: var(--color-3);
+    background-color: var(--hover-color);
+}
+
+.purchase_button{
+    width: -webkit-fill-available;
+    margin: 0px;
 }
 
 footer{
@@ -95,18 +100,12 @@ footer{
     padding: 15px;
 }
 
-container {
-    /*     position: absolute;
-    */    width: 100%;
-}
-
-leftpane {
-    width: 25%;
+leftpane{
+    width: 30%;
     height: 70%;
     float: left;
-    border-right: 2px solid var(--border-color);
+    /* border-right: 2px solid var(--border-color); */
     position: relative;    
-    padding: 5px;
 }
 
 middlepane{
@@ -118,12 +117,11 @@ middlepane{
 }
 
 rightpane{
-    width: 25%;
+    width: 30%;
     height: 70%;
     float: right;
-    border-left: 2px solid var(--border-color);
+    /* border-left: 2px solid var(--border-color); */
     position: relative;
-    padding: 5px;
 }
 
 table, th, td{
@@ -131,12 +129,23 @@ table, th, td{
     border-collapse: collapse;
     position: relative;
 }
+
+th{
+    padding: 5px;
+}
+
 table{
-    margin: 5px;
-    padding-right: 5px;
+    padding: 5px;
+    width: 95%;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #clicker{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     width: 70%;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -144,6 +153,7 @@ table{
 
 .pane-title {
     text-align: center;
+    margin-top: 10px;
 }
 
 #login-central-block {
