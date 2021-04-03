@@ -21,42 +21,36 @@
 
 <body>
     <header>
-        <h1>
-            <span><img src="{% static 'images/logo.jpg' %}" width="95" height="71" alt="Logo" /></span>
-            <span id="logo">Clicker.png</span>
-            <span class="top_right">
-                {% block top_right %}
-                {% if user.is_authenticated %}
-
-                <h3>Welcome back {{ user }}!</h3>
-                <a href="{% url 'clicker_app:myaccount' %}">My Account</a>
-                <a href="{% url 'clicker_app:logout' %}">Log out</a>
-
-                {% else %}
-                <button>
-                    <a href="{% url 'clicker_app:login' %}">Log in</a>
-                </button>
-                or
-                <button>
-                    <a href="{% url 'clicker_app:signup' %}">Sign up</a>
-                </button>
-                {% endif %}
-                {% endblock %}
-            </span class="top_right">
-        </h1>
+        <img src="{% static 'images/logo.jpg' %}" width="95" height="71" alt="Logo" style="padding: 15px;" />
+        <h1><span id="logo">Clicker.png</span></h1>
+        <div class="top_right">
+            {% block top_right %}
+            {% if user.is_authenticated %}
+    
+            <h3>Welcome back {{ user }}!</h3>
+            <a href="{% url 'clicker_app:myaccount' %}">My Account</a>
+            <a href="{% url 'clicker_app:logout' %}">Log out</a>
+    
+            {% else %}
+            <button>
+                <a href="{% url 'clicker_app:login' %}">Log in</a>
+            </button>
+            or
+            <button>
+                <a href="{% url 'clicker_app:signup' %}">Sign up</a>
+            </button>
+            {% endif %}
+            {% endblock %}
+        </div>
     </header>
 
-    <container>
-        <h1>
-            {% block body_block %}
-            default block
-            {% endblock %}
-        </h1>
-    </container>
+    {% block body_block %}
+    default block
+    {% endblock %}
 
     <footer>
         <h1>
-            <span class="foot_link"> <a href="{% url 'clicker_app:index' %}">Homepage</a></span>
+            <span class="foot_link"><a href="{% url 'clicker_app:index' %}">Homepage</a></span>
             <span class="foot_link"><a href="{% url 'clicker_app:about' %}">About</a></span>
             <span class="foot_link"><a href="{% url 'clicker_app:tutorial' %}">Tutorial</a></span>
         </h1>
