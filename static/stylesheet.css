@@ -9,8 +9,8 @@ h1{
 }
 
 h2 {
-	width: 100%;
-	display: inline;
+	/*width: 100%;*/
+	/*display: inline;*/
 	font-size: 20pt;
 	text-align: center;
 	padding-left: 5px;
@@ -41,16 +41,22 @@ a{
     color: var(--color-3);
 }
 
+#upload-png-message{
+    text-align: center;
+}
+
 header{
+    display: flex;
 	border-bottom: 2px solid black;
 	overflow: hidden;
     padding: 5px;
 }
 
 .top_right{
-	float: right;
+    position: absolute;
 	padding: 15px;
 	margin-right: 15px;
+    right: 15px;
 	vertical-align: top;
 }
 
@@ -86,11 +92,12 @@ footer{
 
 #logo {
 	font-size: 32pt;
+    padding: 15px;
 }
 
 container {
-	position: absolute;
-	width: 100%;
+/* 	position: absolute;
+ */	width: 100%;
 }
 
 leftpane {
@@ -135,39 +142,42 @@ table{
 	padding-bottom: 20px;
 }
 
-.center {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	width: 70%;
+.pane-title {
+    text-align: center;
 }
 
-.central {
-	display: inline;
-	margin: 0;
-	position: absolute;
-	top: 30%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+#login-central-block {
+	position: fixed;
+	top: 35%;
+    left: 40%;
 	text-align: center;
-}
-.bottom-left{
-	position: absolute;
-	left:0;
-	bottom:25%;
 }
 
-.socials{
-	display: inline;
-	margin: 0;
-	position: absolute;
-	top: 30%;
-    left: 80%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+#login-title{
+    margin: 10px;
+}
+
+#login_form{
+    margin: 0px;
+    padding: 5px;
+}
+
+#input-box{
+    padding: 5px;
+}
+
+#login-signup-prompt{
+	position: fixed;
+	left: 10px;
+	bottom: 55px;
+}
+
+#login-socials-block{
+	position: relative;
+	top: 25px;
 	text-align: center;
 }
+
 .socials-logo{
 	width: 40px;
 	padding: 20px;

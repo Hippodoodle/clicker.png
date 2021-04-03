@@ -7,59 +7,55 @@ Home
 {% endblock %}
 
 {% block body_block %}
-<container>
-    <leftpane>
-        <h2 class="center">STORE</h2>
-        <table style="width:97%">
-            <tr>
-                <th>Upgrade</th>
-                <th>Price</th>
-                <th>Purchased</th>
-            </tr>
-            {% for key, value in upgrade_table.items %}
-            <tr>
-                <td> <button id="upgrade-{{ key.id }}" class="purchase_button">{{ key.name }}</button></td>
-                {% for item in value %}
-                <td>{{ item }}</td>
-                {% endfor %}
-            </tr>
+<leftpane>
+    <h2 class="pane-title">STORE</h2>
+    <table style="width:97%">
+        <tr>
+            <th>Upgrade</th>
+            <th>Price</th>
+            <th>Purchased</th>
+        </tr>
+        {% for key, value in upgrade_table.items %}
+        <tr>
+            <td> <button id="upgrade-{{ key.id }}" class="purchase_button">{{ key.name }}</button></td>
+            {% for item in value %}
+            <td>{{ item }}</td>
             {% endfor %}
-        </table>
-    </leftpane>
-    <middlepane>
-        <h2 class="center">
-            You have <strong id="points_count">{{ user.account.lifetime_points }}</strong> pixels!
-        </h2>
-        <p id="hey">HELLO</p>
-        <img src="{% static 'images/logo.jpg' %}" alt="Clicker image" class="center" id="clicker" data-user="{{ user.id }}" data-csrf="{{ csrf_token }}">
-        {% if user.is_authenticated %}
-        <p>Go to <a href="{% url 'clicker_app:myaccount' %}">My Account</a> to change your clicker png!</p>
-        {% else %}
-        <p><a href="{% url 'clicker_app:signup' %}">Sign Up </a> to upload your own clicker png!</p>
-        {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+</leftpane>
+<middlepane>
+    <h2 class="pane-title">You have <strong id="points_count">{{ user.account.lifetime_points }}</strong> pixels!</h2>
+    <p id="hey">HELLO</p>
+    <img src="{% static 'images/logo.jpg' %}" alt="Clicker image" id="clicker" data-user="{{ user.id }}" data-csrf="{{ csrf_token }}">
+    {% if user.is_authenticated %}
+    <p id="upload-png-message">Go to <a href="{% url 'clicker_app:myaccount' %}">My Account</a> to change your clicker png!</p>
+    {% else %}
+    <p id="upload-png-message"><a href="{% url 'clicker_app:signup' %}">Sign Up </a> to upload your own clicker png!</p>
+    {% endif %}
 
-    </middlepane>
-    <rightpane>
-        <h2 class="center"> LEADERBOARD</h2>
-        <table style="width:100%">
-            <tr>
-                <th>Rank</th>
-                <th>Username</th>
-                <th>Score</th>
-            </tr>
-            {% for account in leaderboard %}
-            <tr>
-                <td>{{forloop.counter}}</td>
-                <td>{{ account.user.username }}</td>
-                <td>
-                {% if account.user == request.user %}<span id="user-counter">{{ account.lifetime_points }}</span>{% else %}{{ account.lifetime_points }}{% endif %}
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
-        <button>
-            Your ranking is: {{ranking}}
-        </button>
-    </rightpane>
-</container>
+</middlepane>
+<rightpane>
+    <h2 class="pane-title">LEADERBOARD</h2>
+    <table style="width:100%">
+        <tr>
+            <th>Rank</th>
+            <th>Username</th>
+            <th>Score</th>
+        </tr>
+        {% for account in leaderboard %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{ account.user.username }}</td>
+            <td>
+            {% if account.user == request.user %}<span id="user-counter">{{ account.lifetime_points }}</span>{% else %}{{ account.lifetime_points }}{% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <button>
+        Your ranking is: {{ranking}}
+    </button>
+</rightpane>
 {% endblock %}
