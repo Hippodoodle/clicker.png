@@ -3,15 +3,50 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    myAccount
+myAccount
 {% endblock %}
 
 {% block body_block %}
-    This is the myAccount page bodyblock
-    <a href="{% url 'clicker_app:logout' %}">Click here to log out</a>
-    <form method="POST" action="/clicker_app/darkmode/">
-        {% csrf_token %}
-        <input type="hidden" name="user-id" value="{{ user.id }}">
-        <input type="submit" value="{% if user.account.darkmode %}Lightmode{% else %}Darkmode{% endif %}">
-    </form>
+<h2 class="margin15">Welcome back {{user}}! </h2>
+<div class="plain">
+    <div>Total pixels earned:</div>
+    <div>Current number of pixels: </div>
+    <div> Pixels per second: </div>
+</div>
+<h3 class="margin15"> Your achievements: </h3>
+<ul>
+    <li> Achievements should be listed here </li>
+</ul>
+
+<form method="POST" action="/clicker_app/darkmode/">
+    {% csrf_token %}
+    <input type="hidden" name="user-id" value="{{ user.id }}">
+    <input type="submit" value="{% if user.account.darkmode %}Lightmode{% else %}Darkmode{% endif %}">
+</form>
+
+<div class="upload-png">
+    <h3> You can upload your clicker photo here! </h3>
+    <!--Buttons don't do anything yet. Should be upload, then update photo, then submit. 
+        Or change to just one button upload, then update photo.-->
+    <div class="right-centre margin15">
+        <span class="margin15">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Upload file</button>
+            </form>
+        </span>
+        <span class="margin15">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Submit</button>
+            </form>
+        </span>
+    </div>
+
+    <div class="bottom0-left0">
+        <img id="icon" alt="Clicker Image" src="{% static 'images/logo.jpg'%}" />
+    </div>
+</div>
 {% endblock %}
