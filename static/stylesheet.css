@@ -1,31 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&family=Roboto&display=swap');
+
+h1,h2,h3,h4,h5,h6{
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
 h1{
-	font-family: 'Arial', 'Helvetica', sans-serif;
-	font-size: 12pt;
+    font-size: 12pt;
 }
 
 h2 {
-	width: 100%;
-	display: inline;
-	font-size: 20pt;
-	text-align: center;
-	padding-left: 5px;
-	padding-right: 5px;
-	margin: 0px;
+    /*width: 100%;*/
+    /*display: inline;*/
+    font-size: 20pt;
+    text-align: center;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin: 0px;
 }
+
 h3{
-	font-size: 16pt;
-	margin-top: 0px;
-	margin-bottom: 5px;
+    font-size: 16pt;
+    margin-top: 0px;
+    margin-bottom: 5px;
 }
 
 .plain{
-	display: block;
-	margin:15px 15px;
+    display: block;
+    margin:15px 15px;
 }
 
 body{
-	background-color: var(--color-1);
-	margin: 3px;
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--color-1);
+    margin: 0px;
     color: var(--text-color);
 }
 
@@ -34,28 +41,35 @@ a{
     color: var(--color-3);
 }
 
+#upload-png-message{
+    text-align: center;
+}
+
 header{
-	border-bottom: 2px solid var(--border-color);
-	overflow: hidden;
+    display: flex;
+    border-bottom: 2px solid var(--border-color);
+    overflow: hidden;
+    padding: 5px;
 }
 
 .top_right{
-	float: right;
-	padding: 15px;
-	margin-right: 15px;
-	vertical-align: top;
+    position: absolute;
+    padding: 15px;
+    margin-right: 15px;
+    right: 15px;
+    vertical-align: top;
 }
 
 button,
 input[type=submit]{
-	display:inline;
-	text-align: center;
-	border: 2px solid var(--border-color);
-	padding-right: 5px;
-	padding-left: 5px;
-	font-size: 16pt;
-	background-color: var(--color-2);
-	margin-left: 5px;
+    display:inline;
+    text-align: center;
+    border: 2px solid var(--border-color);
+    padding-right: 5px;
+    padding-left: 5px;
+    font-size: 16pt;
+    background-color: var(--color-2);
+    margin-left: 5px;
     transition: color 0.3s ease;
 }
 
@@ -64,146 +78,133 @@ input[type=submit]{
 }
 
 footer{
-	position: fixed;
+    position: fixed;
     left: 0;
     bottom: 0;
-	width: 100%;
-	border-top: 2px solid var(--border-color);
-	overflow: hidden;
+    width: 100%;
+    border-top: 2px solid var(--border-color);
+    overflow: hidden;
 }
 .foot_link{
-	padding-left: 5px;
-	padding-right: 20px;
+    padding-left: 5px;
+    padding-right: 20px;
 }
 
 #logo {
-	font-size: 32pt;
+    font-size: 32pt;
+    padding: 15px;
 }
 
 container {
-	position: absolute;
-	width: 100%;
-	height: 100%;
+    /*     position: absolute;
+    */    width: 100%;
 }
 
 leftpane {
     width: 25%;
-	height: 100%;
+    height: 70%;
     float: left;
-	border-right: 2px solid var(--border-color);
-	position: relative;	
-	padding: 5px;
-	border-collapse: collapse;
+    border-right: 2px solid var(--border-color);
+    position: relative;    
+    padding: 5px;
 }
 
 middlepane{
-	width: 40%;
-	height: 100%;
-	position: relative;
-	float: left;
-	align-items: center;
+    width: 40%;
+    height: 70%;
+    position: relative;
+    float: left;
+    align-items: center;
 }
 
 rightpane{
     width: 25%;
-	height: 100%;
-	float: right;
-	border-left: 2px solid var(--border-color);
-	position: relative;
+    height: 70%;
+    float: right;
+    border-left: 2px solid var(--border-color);
+    position: relative;
+    padding: 5px;
 }
 
 table, th, td{
-	border: 1px solid var(--border-color);
-	border-collapse: collapse;
-	position: relative;
+    border: 1px solid var(--border-color);
+    border-collapse: collapse;
+    position: relative;
 }
 table{
-	margin: 5px;
-	padding-right: 5px;
+    margin: 5px;
+    padding-right: 5px;
 }
 
 #clicker{
-	width: 70%;
-	padding-top: 20px;
-	padding-bottom: 20px;
+    width: 70%;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
-.center {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	width: 70%;
+.pane-title {
+    text-align: center;
 }
 
-.central {
-	display: inline;
-	margin: 0;
-	position: absolute;
-	top: 30%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-	text-align: center;
-}
-.bottom-left{
-	position: absolute;
-	left:0;
-	bottom:25%;
+#login-central-block {
+    position: fixed;
+    top: 35%;
+    left: 40%;
+    text-align: center;
 }
 
-.socials{
-	display: inline;
-	margin: 0;
-	position: absolute;
-	top: 30%;
-    left: 80%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-	text-align: center;
+#login-title{
+    margin: 10px;
 }
+
+#login_form{
+    margin: 0px;
+    padding: 5px;
+}
+
+#input-box{
+    padding: 5px;
+}
+
+#login-signup-prompt{
+    position: fixed;
+    left: 10px;
+    bottom: 55px;
+}
+
+#login-socials-block{
+    position: relative;
+    top: 25px;
+    text-align: center;
+}
+
 .socials-logo{
-	width: 40px;
-	padding: 20px;
-	padding-left:15px;
-	padding-right:15px;
+    width: 40px;
+    padding: 20px;
+    padding-left:15px;
+    padding-right:15px;
 }
 
 .margin15{
-	margin: 15px 15px;
+    margin: 15px 15px;
 }
 
 
 .upload-png{
-	display: block;
-	width: 500px;
-	height:300px;
-	margin:0;
-	position: absolute;
-	top:30%;
-	left: 75%;
-	-ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-	border: 2px solid var(--border-color);
+    margin:0;
+    display: flex;
+    border: 2px solid var(--border-color);
 }
 
 #icon{
-	bottom: 0%;
-	margin: 15px;
-	width:300px;
-	border: 1px solid var(--border-color);
-	border-radius: 5%;
-	padding: 5px;
+    bottom: 0%;
+    margin: 15px;
+    width:300px;
+    border: 1px solid var(--border-color);
+    border-radius: 5%;
+    padding: 5px;
 }
 
 .right-centre{
-	position:absolute;
-	bottom: 30%;
-	right: 5%;
-	text-align: center;
-}
-
-.bottom0-left0{
-	position: absolute;
-	left:0;
-	bottom:0;
+    text-align: center;
 }
