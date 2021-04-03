@@ -9,9 +9,9 @@ myAccount
 {% block body_block %}
 <h2 class="margin15">Welcome back {{user}}! </h2>
 <div class="plain">
-    <div>Total pixels earned:</div>
-    <div>Current number of pixels: </div>
-    <div> Pixels per second: </div>
+    <p>Total pixels earned: {{ user.account.lifetime_points }}</p>
+    <p>Current number of pixels: {{ user.account.points }}</p>
+    <p>Pixels per second: {{ account.upgrades }}</p>
 </div>
 <h3 class="margin15"> Your achievements: </h3>
 <ul>
