@@ -79,7 +79,7 @@ input[type=submit]{
 
 .purchase_button{
     width: -webkit-fill-available;
-    margin-left: 0px;
+    margin: 0px;
 }
 
 footer{
