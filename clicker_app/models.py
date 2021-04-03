@@ -27,6 +27,7 @@ class Account(models.Model):
     lifetime_points = IntegerField(default=0)
     achievements = models.ManyToManyField(Achievement, blank=True)
     upgrades = models.ManyToManyField(Upgrade, through="OwnsUpgrade")
+    darkmode = BooleanField(default=True)
 
     def __str__(self):
         return self.user.username

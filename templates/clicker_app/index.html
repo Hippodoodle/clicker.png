@@ -3,40 +3,40 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    Home
+Home
 {% endblock %}
 
 {% block body_block %}
-
+<container>
     <leftpane>
-        <h2 class="center"> STORE</h2>
+        <h2 class="center">STORE</h2>
         <table style="width:97%">
             <tr>
                 <th>Upgrade</th>
                 <th>Price</th>
                 <th>Purchased</th>
             </tr>
+            {% for key, value in upgrade_table.items %}
             <tr>
-                <td>Editor</td>
-                <td>100</td>
-                <td>x</td>
+                <td> <button id="upgrade-{{ key.id }}" class="purchase_button">{{ key.name }}</button></td>
+                {% for item in value %}
+                <td>{{ item }}</td>
+                {% endfor %}
             </tr>
-            <tr>
-                <td>HD</td>
-                <td>1000</td>
-                <td>x</td>
-            </tr>
+            {% endfor %}
         </table>
     </leftpane>
     <middlepane>
         <h2 class="center">
-            You have NUMBER HERE pixels!
+            You have <strong id="points_count">{{ user.account.lifetime_points }}</strong> pixels!
         </h2>
-        <img src="{% static 'images/logo.jpg' %}" alt="Clicker image" class="center" id="clicker">
+
+        <p id="hey">HELLO</p>
+
+        <img src="{% static 'images/logo.jpg' %}" alt="Clicker image" class="center" id="clicker" data-user="{{ user.id }}" data-csrf="{{ csrf_token }}">
+
         {% if user.is_authenticated %}
-
         Go to <span><a href="{% url 'clicker_app:myaccount' %}">MyAccount </a></span>
-
         to change your clicker png!
         {% else %}
         <span><a href="{% url 'clicker_app:signup' %}">Sign up </a></span> to upload your own clicker png!
@@ -44,27 +44,26 @@
 
     </middlepane>
     <rightpane>
-        <h2 class="center"> LEADER BOARD</h2>
+        <h2 class="center"> LEADERBOARD</h2>
         <table style="width:100%">
             <tr>
                 <th>Rank</th>
                 <th>Username</th>
                 <th>Score</th>
             </tr>
+            {% for account in leaderboard %}
             <tr>
-                <td>1</td>
-                <td>User1</td>
-                <td>500</td>
+                <td>{{forloop.counter}}</td>
+                <td>{{ account.user.username }}</td>
+                <td>
+                {% if account.user == request.user %}<span id="user-counter">{{ account.lifetime_points }}</span>{% else %}{{ account.lifetime_points }}{% endif %}
+                </td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>User2</td>
-                <td>1000</td>
-            </tr>
+            {% endfor %}
         </table>
         <button>
             Your ranking is: {{ranking}}
         </button>
     </rightpane>
-
+</container>
 {% endblock %}
