@@ -100,11 +100,6 @@ footer{
     padding: 15px;
 }
 
-container {
-    /*     position: absolute;
-    */    width: 100%;
-}
-
 leftpane{
     width: 30%;
     height: 70%;
@@ -134,9 +129,17 @@ table, th, td{
     border-collapse: collapse;
     position: relative;
 }
-table{
-    margin-top: 10px;
+
+th{
     padding: 5px;
+}
+
+table{
+    padding: 5px;
+    width: 95%;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #clicker{
