@@ -47,16 +47,14 @@
     </header>
 
     <container>
-        <h1>
-            {% block body_block %}
-            default block
-            {% endblock %}
-        </h1>
+        {% block body_block %}
+        default block
+        {% endblock %}
     </container>
 
     <footer>
         <h1>
-            <span class="foot_link"> <a href="{% url 'clicker_app:index' %}">Homepage</a></span>
+            <span class="foot_link"><a href="{% url 'clicker_app:index' %}">Homepage</a></span>
             <span class="foot_link"><a href="{% url 'clicker_app:about' %}">About</a></span>
             <span class="foot_link"><a href="{% url 'clicker_app:tutorial' %}">Tutorial</a></span>
         </h1>
