@@ -26,6 +26,12 @@ h3{
 body{
 	background-color: var(--color-1);
 	margin: 3px;
+    color: var(--text-color);
+}
+
+a{
+    text-decoration: underline;
+    color: var(--color-3);
 }
 
 header{
@@ -40,7 +46,8 @@ header{
 	vertical-align: top;
 }
 
-button{
+button,
+input[type=submit]{
 	display:inline;
 	text-align: center;
 	border: 2px solid black;

@@ -12,4 +12,5 @@ urlpatterns = [
     path('myaccount/', views.myaccount, name='myaccount'),
     path('logout/', views.logout_view, name='logout'),
     path('add_points/', views.AddPoints.as_view(), name='add_points'),
+    path('darkmode/', views.Darkmode.as_view(), name='darkmode'),
 ]

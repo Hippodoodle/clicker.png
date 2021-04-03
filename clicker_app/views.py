@@ -113,3 +113,19 @@ class AddPoints(View):
         user_account.save()
 
         return HttpResponse(user_account.points)
+
+
+class Darkmode(View):
+    def post(self, request):
+        user_id = request.POST.get('user-id', None)
+
+        try:
+            user_account = Account.objects.get(user__id=user_id)
+        except Exception as e:
+            print(e)
+            return HttpResponse(-1)
+
+        user_account.darkmode = not user_account.darkmode
+        user_account.save()
+
+        return redirect(request.META.get("HTTP_REFERER"))
