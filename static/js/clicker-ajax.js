@@ -15,7 +15,22 @@ $(document).ready(function () {
             headers: {'X-CSRFToken': token},
             data: {'a': a}
         })
+    });
 
+    $('.darkmode-button').click(function () {
+        var a;
+        a = $(this).attr('data-user');
+        token = $(this).attr('data-csrf');
+
+        $.ajax({
+            url: '/clicker_app/myaccount/darkmode/',
+            type: 'POST',
+            success: function (data) {
+                $('#darkmode-button').html(data);
+            },
+            headers: {'X-CSRFToken': token},
+            data: {'d': d}
+        })
     });
 
     $('.purchase_button').click(function() {

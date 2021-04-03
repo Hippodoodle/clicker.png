@@ -113,3 +113,22 @@ class AddPoints(View):
         user_account.save()
 
         return HttpResponse(user_account.points)
+
+
+class Darkmode(View):
+    def post(self, request):
+        a = request.POST.get('a', None)
+
+        try:
+            user_account = Account.objects.get(user__id=a)
+        except Exception as e:
+            print(e)
+            return HttpResponse(-1)
+
+        if user_account.darkmode:
+            user_account.darkmode = False
+        else:
+            user_account.darkmode = True
+        user_account.save()
+
+        return HttpResponse(user_account.darkmode)
