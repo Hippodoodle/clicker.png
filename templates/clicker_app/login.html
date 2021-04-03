@@ -8,22 +8,44 @@
 {% endblock %}
 
 {% block body_block %}
-<h1>Log in</h1>
+
+<div class="central">
+
+<h2>Log into your account!</h2>
+<br></br>
+
 <form id="login_form" method="post" action="{% url 'clicker_app:login' %}">
     {% csrf_token %}
-    Username: <input type="text" name="username" value="" size="50" />
-    <br />
-    Password: <input type="password" name="password" value="" size="5-" />
-    <br />
-    <input type="submit" value="submit" />
-</form>
-<button>
-    <a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a>
-</button>
-<button>
-    <a href="{% provider_login_url 'google' %}">Login with Google</a>
-</button>
+    <div class=input-box>
+        Username: <input type="text" name="username" value="" size="50" />
+        <br />
+    </div>
+    <div class=input-box>
+        Password: <input type="password" name="password" value="" size="20" />
+        <br />
+    </div>
+  
+    <input type="submit" value="Log in" size=16/>
 
-<br /><br />
-<a href="{% url 'clicker_app:signup' %}">Click here to sign up</a>
+</form>
+</div>
+
+<div class="socials">
+    <h3>or log in using</h3>
+
+    <a href="{% url 'social:begin' 'facebook' %}">
+    <img class="socials-logo" src="https://upload.wikimedia.org/wikipedia/commons/b/be/Facebook_William_Aditya_Sarana.png" />
+    </a>
+
+    <a href="{% provider_login_url 'google' %}">
+    <img class="socials-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+    </a>
+</div>
+
+<div class="bottom-left">
+    Don't have an account? 
+    <button>
+        <a href="{% url 'clicker_app:signup' %}">Sign up</a>
+    </button>
+</div>
 {% endblock %}
