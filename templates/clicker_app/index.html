@@ -14,6 +14,7 @@ Home
             <th>Upgrade</th>
             <th>Price</th>
             <th>Purchased</th>
+            <th>Auto</th>
         </tr>
         {% for key, value in upgrade_table.items %}
         <tr>
@@ -21,6 +22,7 @@ Home
             {% for item in value %}
             <td>{{ item }}</td>
             {% endfor %}
+            <td>{{ key.auto_click }}</td>
         </tr>
         {% endfor %}
     </table>

@@ -100,13 +100,12 @@ container {
     */    width: 100%;
 }
 
-leftpane {
-    width: 25%;
+leftpane{
+    width: 30%;
     height: 70%;
     float: left;
-    border-right: 2px solid var(--border-color);
+    /* border-right: 2px solid var(--border-color); */
     position: relative;    
-    padding: 5px;
 }
 
 middlepane{
@@ -118,12 +117,11 @@ middlepane{
 }
 
 rightpane{
-    width: 25%;
+    width: 30%;
     height: 70%;
     float: right;
-    border-left: 2px solid var(--border-color);
+    /* border-left: 2px solid var(--border-color); */
     position: relative;
-    padding: 5px;
 }
 
 table, th, td{
@@ -132,11 +130,14 @@ table, th, td{
     position: relative;
 }
 table{
-    margin: 5px;
-    padding-right: 5px;
+    margin: 0px;
+    padding: 5px;
 }
 
 #clicker{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     width: 70%;
     padding-top: 20px;
     padding-bottom: 20px;
