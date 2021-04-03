@@ -65,8 +65,7 @@ input[type=submit]{
     display:inline;
     text-align: center;
     border: 2px solid var(--border-color);
-    padding-right: 5px;
-    padding-left: 5px;
+    margin: 5px;
     font-size: 16pt;
     color: var(--text-color);
     background-color: var(--color-2);
@@ -76,6 +75,11 @@ input[type=submit]{
 
 .purchase_button:hover {
     background-color: var(--hover-color);
+}
+
+.purchase_button{
+    width: -webkit-fill-available;
+    margin-left: 0px;
 }
 
 footer{
@@ -131,7 +135,7 @@ table, th, td{
     position: relative;
 }
 table{
-    margin: 0px;
+    margin-top: 10px;
     padding: 5px;
 }
 
@@ -146,6 +150,7 @@ table{
 
 .pane-title {
     text-align: center;
+    margin-top: 10px;
 }
 
 #login-central-block {

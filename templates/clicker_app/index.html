@@ -18,7 +18,7 @@ Home
         </tr>
         {% for key, value in upgrade_table.items %}
         <tr>
-            <td> <button id="upgrade-{{ key.id }}" class="purchase_button">{{ key.name }}</button></td>
+            <td><button id="upgrade-{{ key.id }}" class="purchase_button">{{ key.name }}</button></td>
             {% for item in value %}
             <td>{{ item }}</td>
             {% endfor %}
