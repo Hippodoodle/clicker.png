@@ -68,13 +68,14 @@ input[type=submit]{
     padding-right: 5px;
     padding-left: 5px;
     font-size: 16pt;
+    color: var(--text-color);
     background-color: var(--color-2);
     margin-left: 5px;
     transition: color 0.3s ease;
 }
 
 .purchase_button:hover {
-    background-color: var(--color-3);
+    background-color: var(--hover-color);
 }
 
 footer{
