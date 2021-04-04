@@ -65,13 +65,12 @@ Home
         {% endfor %}
     </table>
     <button>
-    {% for account in leaderboard %}
+    {% for account in ranking_list %}
         {% if account.user == request.user%}
             Your ranking is: {{forloop.counter}}
         {%else%}
             Your ranking is:
         {%endif%}
-
     {%endfor%}
     </button>
 </rightpane>
