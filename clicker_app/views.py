@@ -1,5 +1,4 @@
 from django.http.response import JsonResponse
-import clicker_app
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from clicker_app.forms import UserForm
