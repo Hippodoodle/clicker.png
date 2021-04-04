@@ -14,6 +14,7 @@ Home
             <th>Upgrade</th>
             <th>Price</th>
             <th>Purchased</th>
+            <th>Effect</th>
             <th>Auto</th>
         </tr>
         {% for key, value in upgrade_table.items %}
@@ -24,7 +25,7 @@ Home
                 {% if forloop.counter == 1 %}
                 <script>
                     x = {% for item in purchased_list %}{% if item.upgrade == key %}{{ item.upgrade.cost }}{% endif %}{% endfor %};
-                    x = x * {% for item in purchased_list %}{% if item.upgrade == key %}{{ item.quantity }}{% endif %}{% endfor %} * 1.5;
+                    x = x * Math.pow(1.15, {% for item in purchased_list %}{% if item.upgrade == key %}{{ item.quantity }}{% endif %}{% endfor %});
                     document.getElementById("upgrade-{{ key.id }}-1").innerHTML = Math.floor(x);
                 </script>
                 {% else %}
@@ -32,14 +33,15 @@ Home
                 {% endif %}
             </td>
             {% endfor %}
+            <td>{{ key.effect }}</td>
             <td>{{ key.auto_click }}</td>
         </tr>
         {% endfor %}
     </table>
 </leftpane>
 <middlepane>
-    <h2 class="pane-title">You have <strong id="points_count">{{ user.account.lifetime_points }}</strong> pixels!</h2>
-    <img src="{% static 'images/logo.jpg' %}" alt="Clicker image" id="clicker" data-user="{{ user.id }}" data-csrf="{{ csrf_token }}">
+    <h2 class="pane-title">You have <strong id="points_count">{{ user.account.points }}</strong> pixels!</h2>
+    <img src="{% static 'images/logo.jpg' %}" alt="Clicker image" id="clicker" data-user="{{ user.id }}" data-csrf="{{ csrf_token }}" data-cps="{{ cps }}" data-click-upgraded="{{ upgraded_click }}">
     {% if user.is_authenticated %}
     <p id="upload-png-message">Go to <a href="{% url 'clicker_app:myaccount' %}">My Account</a> to change your clicker png!</p>
     {% else %}
