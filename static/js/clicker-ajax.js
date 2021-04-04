@@ -60,7 +60,7 @@ $(document).ready(function () {
         })
     });
 
-    $(document).ready(function () {
+    $('#clicker').ready(function () {
         setInterval(function() {
             var a;
             a = $('#clicker').attr('data-user');

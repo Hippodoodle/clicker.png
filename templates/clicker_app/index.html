@@ -34,7 +34,7 @@ Home
             </td>
             {% endfor %}
             <td>{{ key.effect }}</td>
-            <td>{{ key.auto_click }}</td>
+            <td style="text-align: center;">{% if key.auto_click %}&#10003;{% endif %}</td>
         </tr>
         {% endfor %}
     </table>
@@ -42,6 +42,11 @@ Home
 <middlepane>
     <h2 class="pane-title">You have <strong id="points_count">{{ user.account.points }}</strong> pixels!</h2>
     <img src="{% static 'images/logo.jpg' %}" alt="Clicker image" id="clicker" data-user="{{ user.id }}" data-csrf="{{ csrf_token }}" data-cps="{{ cps }}" data-click-upgraded="{{ upgraded_click }}">
+    <div class="plain">
+        <p>Total pixels earned: {{ user.account.lifetime_points }}</p>
+        <p>Current number of pixels: {{ user.account.points }}</p>
+        <p>Pixels per second: {{ cps }}</p>
+    </div>
     {% if user.is_authenticated %}
     <p id="upload-png-message">Go to <a href="{% url 'clicker_app:myaccount' %}">My Account</a> to change your clicker png!</p>
     {% else %}
