@@ -41,8 +41,6 @@ def index(request):
         if not item.upgrade.auto_click:
             upgraded_click += item.upgrade.effect*item.quantity
 
-    print("aaaaaa", clicks_per_second, upgraded_click)
-
     context_dict = {
         'leaderboard': leaderboard_list,
         'upgrade_table': upgrade_table_dict,
