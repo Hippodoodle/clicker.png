@@ -24,7 +24,7 @@ Home
                 {% if forloop.counter == 1 %}
                 <script>
                     x = {% for item in purchased_list %}{% if item.upgrade == key %}{{ item.upgrade.cost }}{% endif %}{% endfor %};
-                    x = x * {% for item in purchased_list %}{% if item.upgrade == key %}{{ item.quantity }}{% endif %}{% endfor %} * 0.5;
+                    x = x * {% for item in purchased_list %}{% if item.upgrade == key %}{{ item.quantity }}{% endif %}{% endfor %} * 1.5;
                     document.getElementById("upgrade-{{ key.id }}-1").innerHTML = Math.floor(x);
                 </script>
                 {% else %}

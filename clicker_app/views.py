@@ -147,7 +147,7 @@ class Purchase(View):
         owns_upgrade.quantity += 1
         owns_upgrade.save()
 
-        cost_instance = int(owns_upgrade.upgrade.cost*owns_upgrade.quantity*0.5)
+        cost_instance = int(owns_upgrade.upgrade.cost*owns_upgrade.quantity*1.5)
 
         print(str(cost_instance)+"?"+str(owns_upgrade.quantity))
 
