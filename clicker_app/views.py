@@ -27,7 +27,7 @@ def index(request):
 
     # TODO: remove list index for whole leaderboard  when scrolling is implememnted
     leaderboard_list = Account.objects.order_by('-lifetime_points')[:10]
-   
+
     ranking_list = Account.objects.order_by('-lifetime_points')
 
     context_dict = {}
