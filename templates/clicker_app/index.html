@@ -64,14 +64,10 @@ Home
         </tr>
         {% endfor %}
     </table>
-    <button>
     {% for account in ranking_list %}
         {% if account.user == request.user%}
-            Your ranking is: {{forloop.counter}}
-        {%else%}
-            Your ranking is:
+        <button>Your ranking is: {{forloop.counter}}</button>
         {%endif%}
     {%endfor%}
-    </button>
 </rightpane>
 {% endblock %}
