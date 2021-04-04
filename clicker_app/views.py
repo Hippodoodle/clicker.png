@@ -30,12 +30,10 @@ def index(request):
    
     ranking_list = Account.objects.order_by('-lifetime_points')
 
-
     context_dict = {}
     context_dict['leaderboard'] = leaderboard_list
     context_dict['upgrade_table'] = upgrade_table_dict
     context_dict['purchased_list'] = purchased_list
-
     context_dict['ranking_list'] = ranking_list
     response = render(request, 'clicker_app/index.html', context=context_dict)
     return response
