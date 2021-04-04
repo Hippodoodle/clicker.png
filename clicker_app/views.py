@@ -1,3 +1,4 @@
+from django.http.response import JsonResponse
 import clicker_app
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -43,13 +44,14 @@ def index(request):
 
     print("aaaaaa", clicks_per_second, upgraded_click)
 
-    context_dict = {}
-    context_dict['leaderboard'] = leaderboard_list
-    context_dict['upgrade_table'] = upgrade_table_dict
-    context_dict['purchased_list'] = purchased_list
-    context_dict['ranking_list'] = ranking_list
-    context_dict['cps'] = clicks_per_second
-    context_dict['upgraded_click'] = upgraded_click
+    context_dict = {
+        'leaderboard': leaderboard_list,
+        'upgrade_table': upgrade_table_dict,
+        'purchased_list': purchased_list,
+        'ranking_list': ranking_list,
+        'cps': clicks_per_second,
+        'upgraded_click': upgraded_click,
+    }
     response = render(request, 'clicker_app/index.html', context=context_dict)
     return response
 
@@ -136,7 +138,10 @@ class AddPoints(View):
         user_account.lifetime_points = str(int(user_account.lifetime_points) + int(clicks))
         user_account.save()
 
-        return HttpResponse(user_account.points+"?"+user_account.lifetime_points)
+        return JsonResponse({
+            'points': user_account.points,
+            'lifetime_points': user_account.lifetime_points,
+        })
 
 
 class Darkmode(View):
@@ -178,6 +183,7 @@ class Purchase(View):
 
         owns_upgrade.save()
 
-        print(str(cost_instance)+"?"+str(owns_upgrade.quantity))
-
-        return HttpResponse(str(cost_instance)+"?"+str(owns_upgrade.quantity))
+        return JsonResponse({
+            'cost_instance': str(cost_instance),
+            'quantity': str(owns_upgrade.quantity),
+        })
