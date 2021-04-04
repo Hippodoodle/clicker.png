@@ -1,19 +1,22 @@
+var click_count = 0;
+
 $(document).ready(function () {
 
     $('#clicker').click(function () {
         var a;
         a = $(this).attr('data-user');
+        clicks = $(this).attr('data-click-upgraded');
         token = $(this).attr('data-csrf');
 
         $.ajax({
             url: '/clicker_app/add_points/',
             type: 'POST',
             success: function (data) {
-                $('#points_count').html(data);
-                $('#user-counter').html(data);
+                $('#points_count').html(data.split("?")[0]);
+                $('#user-counter').html(data.split("?")[1]);
             },
             headers: {'X-CSRFToken': token},
-            data: {'a': a}
+            data: {'a': a, 'clicks': clicks}
         })
     });
 
@@ -52,10 +55,23 @@ $(document).ready(function () {
             success: function (data) {
                 $(s1).html(data.split("?")[0]);
                 $(s2).html(data.split("?")[1]);
+                location.reload();
             },
             headers: {'X-CSRFToken': token},
             data: {'user-id': a, 'upgrade': upgrade}
         })
+    });
+
+    $('#clicker').ready(function () {
+        var a;
+        a = $(this).attr('data-user');
+        cps = $(this).attr('data-cps');
+        token = $(this).attr('data-csrf');
+
+        setInterval(function() {
+
+        }, 1000);
+
     });
 
 });

@@ -1,3 +1,4 @@
+import clicker_app
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from clicker_app.forms import UserForm
@@ -30,11 +31,25 @@ def index(request):
 
     ranking_list = Account.objects.order_by('-lifetime_points')
 
+    clicks_per_second = 0
+    for item in purchased_list:
+        if item.upgrade.auto_click:
+            clicks_per_second += item.upgrade.effect*item.quantity
+
+    upgraded_click = 1
+    for item in purchased_list:
+        if not item.upgrade.auto_click:
+            upgraded_click += item.upgrade.effect*item.quantity
+
+    print("aaaaaa", clicks_per_second, upgraded_click)
+
     context_dict = {}
     context_dict['leaderboard'] = leaderboard_list
     context_dict['upgrade_table'] = upgrade_table_dict
     context_dict['purchased_list'] = purchased_list
     context_dict['ranking_list'] = ranking_list
+    context_dict['cps'] = clicks_per_second
+    context_dict['upgraded_click'] = upgraded_click
     response = render(request, 'clicker_app/index.html', context=context_dict)
     return response
 
@@ -81,6 +96,10 @@ def signup(request):
             account.user = user
             account.save()
 
+            for upgrade_instance in Upgrade.objects.all():
+                owns_upgrade = OwnsUpgrade.objects.get_or_create(account=account, upgrade=upgrade_instance)[0]
+                owns_upgrade.save()
+
             registered = True  # save to databbase, registration successful
         else:
             print(user_form.errors)  # invalid attempt
@@ -105,6 +124,7 @@ def logout_view(request):
 class AddPoints(View):
     def post(self, request):
         a = request.POST.get('a', None)
+        clicks = request.POST.get('clicks', 1)
 
         try:
             user_account = Account.objects.get(user__id=a)
@@ -112,11 +132,11 @@ class AddPoints(View):
             print(e)
             return HttpResponse(-1)
 
-        user_account.points = str(int(user_account.points) + 1)
-        user_account.lifetime_points = str(int(user_account.lifetime_points) + 1)
+        user_account.points = str(int(user_account.points) + int(clicks))
+        user_account.lifetime_points = str(int(user_account.lifetime_points) + int(clicks))
         user_account.save()
 
-        return HttpResponse(user_account.points)
+        return HttpResponse(user_account.points+"?"+user_account.lifetime_points)
 
 
 class Darkmode(View):
@@ -147,10 +167,16 @@ class Purchase(View):
         except Exception:
             return HttpResponse("-1?-1")
 
-        owns_upgrade.quantity += 1
-        owns_upgrade.save()
+        cost_instance = int(owns_upgrade.upgrade.cost*(1.15**owns_upgrade.quantity))
 
-        cost_instance = int(owns_upgrade.upgrade.cost*owns_upgrade.quantity*1.5)
+        if user_account.points >= cost_instance:
+            owns_upgrade.quantity += 1
+            user_account.points = user_account.points - cost_instance
+            user_account.save()
+            owns_upgrade.save()
+            cost_instance = int(owns_upgrade.upgrade.cost*(1.15**owns_upgrade.quantity))
+
+        owns_upgrade.save()
 
         print(str(cost_instance)+"?"+str(owns_upgrade.quantity))
 
