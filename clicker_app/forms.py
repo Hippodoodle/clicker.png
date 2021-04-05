@@ -9,7 +9,8 @@ class UserForm(forms.ModelForm):
         model = User
         fields = ('username', 'email', 'password')
 
+
 class ImageUpload(forms.ModelForm):
     class Meta:
         model = Account
-        fields = ('image',)
+        fields = ('image', )

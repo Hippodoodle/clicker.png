@@ -211,9 +211,8 @@ def upload_image(request):
             image_form.save(commit=False)
             account_id = request.POST.get('user-id')
             new_image = image_form.files['image']
-            user_account = Account.objects.get(user__id = account_id)
+            user_account = Account.objects.get(user__id=account_id)
             user_account.image = new_image
             user_account.save()
-
 
     return redirect(reverse('clicker_app:index'))
