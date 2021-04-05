@@ -120,7 +120,8 @@ def populate():
     ]
 
     for achievement in achievements:
-        add_achievement(achievement['name'], achievement['description'], achievement['condition'], achievement['current_score_achievement'])
+        add_achievement(achievement['name'], achievement['description'],
+                        achievement['condition'], achievement['current_score_achievement'])
 
     for upgrade in upgrades:
         add_upgrade(upgrade['name'], upgrade['cost'], upgrade['effect'], upgrade['auto_click'])
