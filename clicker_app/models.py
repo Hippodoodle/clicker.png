@@ -4,8 +4,10 @@ from django.db.models.fields import BooleanField, CharField, IntegerField
 
 
 class Achievement(models.Model):
-    name = models.CharField(max_length=128, unique=True)
-    description = models.CharField(max_length=256)
+    name = CharField(max_length=128, unique=True)
+    description = CharField(max_length=256)
+    condition = IntegerField(default=0)
+    current_score_achievement = BooleanField(default=False)
 
     def __str__(self):
         return self.name

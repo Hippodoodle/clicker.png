@@ -110,7 +110,25 @@ def signup(request):
 
 
 def myaccount(request):
-    response = render(request, 'clicker_app/myaccount.html')
+
+    if request.user.is_authenticated:
+        purchased_list = OwnsUpgrade.objects.filter(account=request.user.account)
+    else:
+        purchased_list = []
+
+    clicks_per_second = 0
+    for item in purchased_list:
+        if item.upgrade.auto_click:
+            clicks_per_second += item.upgrade.effect*item.quantity
+
+    all_achievements = Achievement.objects.all()
+
+    context_dict = {
+        'all_achievements': all_achievements,
+        'cps': clicks_per_second,
+    }
+
+    response = render(request, 'clicker_app/myaccount.html', context=context_dict)
     return response
 
 

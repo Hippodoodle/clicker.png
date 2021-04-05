@@ -218,3 +218,30 @@ table{
 .right-centre{
     text-align: center;
 }
+
+#achievement-table-wrapper {
+    position:relative;
+    width: 40%;
+}
+
+#achievement-table-scroll {
+    height:200px;
+    overflow:auto;  
+}
+
+#achievement-table-wrapper table {
+    position: relative;
+    margin-top: 0;
+    border:2px solid var(--border-color);
+}
+
+
+#achievement-table-wrapper th{
+    z-index: 2;
+    padding: 5px;
+    border:2px solid var(--border-color);
+    background-color: var(--color-1);
+    position:sticky;  
+    top: 0; 
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+}
