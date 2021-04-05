@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% extends 'clicker_app/base.html' %}
+{% load staticfiles %}
+{% load socialaccount %} 
+
+{% block title_block %}
+    LogIn
+{% endblock %}
+
+{% block body_block %}
+
+<div id="login-central-block">
+    <h2 id="login-title">Log into your account!</h2>
+    <form id="login_form" method="post" action="{% url 'clicker_app:login' %}">
+        {% csrf_token %}
+        <div class=input-box>
+            Username: <input id='username' type="text" name="username" value="" size="50" />
+        </div>
+        <div class=input-box>
+            Password: <input id='password' type="password" name="password" value="" size="20" />
+        </div>
+        <input id='submit' type="submit" value="Log in" size=16 />
+    </form>
+
+    <div id="login-socials-block">
+        <h3>or log in using</h3>
+        <a href="{% url 'social:begin' 'facebook' %}">
+            <img class="socials-logo" alt="Facebook logo" src="https://upload.wikimedia.org/wikipedia/commons/b/be/Facebook_William_Aditya_Sarana.png" />
+        </a>
+        <a href="{% provider_login_url 'google' %}">
+            <img class="socials-logo" alt="Google logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+        </a>
+    </div>
+</div>
+
+<div id="login-signup-prompt">
+    Don't have an account? 
+    <button>
+        <a href="{% url 'clicker_app:signup' %}">Sign up</a>
+    </button>
+</div>
+<script>
+    $("#submit").click(function(){
+        username = $("#username").attr('value')
+        password = $("#password").attr("password")
+        if(username.length == 0  || username.length > 11 ){
+            alert("username is wrong input!!!")
+        } 
+        if(password.length == 0  || password.length > 11 ){
+            alert("password is wrong input!!!")
+        } 
+    })
+</script>
+{% endblock %}
