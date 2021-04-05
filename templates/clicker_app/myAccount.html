@@ -11,11 +11,43 @@ My Account
 <div class="plain">
     <p>Total pixels earned: {{ user.account.lifetime_points }}</p>
     <p>Current number of pixels: {{ user.account.points }}</p>
+    <p>Pixels per second: {{ cps }}</p>
 </div>
-<h3 class="margin15"> Your achievements: </h3>
-<ul>
-    <li> Achievements should be listed here </li>
-</ul>
+
+<h3 class="margin15">Your achievements:</h3>
+
+<div id="achievement-table-wrapper">
+    <div id="achievement-table-scroll">
+        <table>
+            <thead>
+                <tr>
+                    <th><span class="achievement-title">Name</span></th>
+                    <th><span class="achievement-title">Description</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for achievement in all_achievements %}
+                <tr>
+                    <td>{{ achievement.name }}</td>
+                    {% if achievement.current_score_achievement %}
+                        {% if user.account.points >= achievement.condition %}
+                        <td>{{ achievement.description }}</td>
+                        {% else %}
+                        <td>?</td>
+                        {% endif %}
+                    {% else %}
+                        {% if user.account.lifetime_points >= achievement.condition %}
+                        <td>{{ achievement.description }}</td>
+                        {% else %}
+                        <td>?</td>
+                        {% endif %}
+                    {% endif %}
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>
+</div>
 
 <form method="POST" action="/clicker_app/darkmode/">
     {% csrf_token %}
