@@ -10,14 +10,50 @@ from clicker_app.models import Achievement, Upgrade  # noqa: E402
 def populate():
 
     achievements = [
-        {'name': 'First Achievement',
-         'description': 'The first one. Congrats, you made it!'},
-        {'name': 'Second Achievement',
-         'description': 'The second one.'},
         {'name': 'Welcome!',
-         'description': 'You\'ve created an account.'},
-        {'name': 'Impossible Achievement',
-         'description': 'You shouldn\'t have this.'},
+         'description': 'Congrats, you made it!',
+         'condition': 0,
+         'current_score_achievement': False},
+        {'name': 'Double Digits!',
+         'description': 'Get 10 pixels. Buy yourself an upgrade.',
+         'condition': 10,
+         'current_score_achievement': False},
+        {'name': '8-bit Textures',
+         'description': 'Own 64 pixels at once. Not enough for a whole minecraft block.',
+         'condition': 64,
+         'current_score_achievement': True},
+        {'name': 'Looking Good!',
+         'description': 'Own 384 pixels at once. Enough for a minecraft bloack!',
+         'condition': 384,
+         'current_score_achievement': True},
+        {'name': 'Four Zeroes',
+         'description': 'Get 10000 pixels. Moving up in the world.',
+         'condition': 10000,
+         'current_score_achievement': False},
+        {'name': '1080p',
+         'description': 'Get 2073600 pixels. Full High Definition Resolution.',
+         'condition': 2073600,
+         'current_score_achievement': False},
+        {'name': '1',
+         'description': '1',
+         'condition': 42000000000,
+         'current_score_achievement': False},
+        {'name': '2',
+         'description': '2',
+         'condition': 999999999999,
+         'current_score_achievement': False},
+        {'name': '3',
+         'description': '3',
+         'condition': 999999999999,
+         'current_score_achievement': False},
+        {'name': '4',
+         'description': '4',
+         'condition': 999999999999,
+         'current_score_achievement': False},
+        {'name': '5',
+         'description': '5',
+         'condition': 999999999999,
+         'current_score_achievement': False},
     ]
 
     upgrades = [
@@ -84,7 +120,8 @@ def populate():
     ]
 
     for achievement in achievements:
-        add_achievement(achievement['name'], achievement['description'])
+        add_achievement(achievement['name'], achievement['description'],
+                        achievement['condition'], achievement['current_score_achievement'])
 
     for upgrade in upgrades:
         add_upgrade(upgrade['name'], upgrade['cost'], upgrade['effect'], upgrade['auto_click'])
@@ -96,9 +133,10 @@ def populate():
         print(f'- {u}')
 
 
-def add_achievement(name, description):
-    a = Achievement.objects.get_or_create(
-        name=name, description=description)[0]
+def add_achievement(name, description, condition, current_score_achievement):
+    a = Achievement.objects.get_or_create(name=name, description=description)[0]
+    a.condition = condition
+    a.current_score_achievement = current_score_achievement
     a.save()
     return a
 
