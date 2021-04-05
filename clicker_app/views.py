@@ -1,7 +1,7 @@
 from django.http.response import JsonResponse
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from clicker_app.forms import UserForm
+from clicker_app.forms import UserForm, ImageUpload
 from django.contrib.auth import authenticate, default_app_config, logout, login  # noqa: F401
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
@@ -184,3 +184,18 @@ class Purchase(View):
             'cost_instance': str(cost_instance),
             'quantity': str(owns_upgrade.quantity),
         })
+
+
+def upload_image(request):
+    if request.method == "POST":
+        image_form = ImageUpload(request.POST, request.FILES)
+        if image_form.is_valid():
+            image_form.save(commit=False)
+            account_id = request.POST.get('user-id')
+            new_image = image_form.files['image']
+            user_account = Account.objects.get(user__id = account_id)
+            user_account.image = new_image
+            user_account.save()
+
+
+    return redirect(reverse('clicker_app:index'))
