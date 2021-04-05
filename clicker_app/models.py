@@ -30,7 +30,7 @@ class Account(models.Model):
     lifetime_points = IntegerField(default=0)
     achievements = models.ManyToManyField(Achievement, blank=True)
     upgrades = models.ManyToManyField(Upgrade, through="OwnsUpgrade")
-    darkmode = BooleanField(default=True)
+    darkmode = BooleanField(default=False)
     image = models.ImageField(upload_to="uploads/", default=settings.MEDIA_DIR + "/uploads/logo.jpg")
 
     def __str__(self):
