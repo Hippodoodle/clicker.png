@@ -60,20 +60,12 @@ My Account
     <!--Buttons don't do anything yet. Should be upload, then update photo, then submit. 
         Or change to just one button upload, then update photo.-->
     <div class="right-centre margin15">
-        <span class="margin15">
-            <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">Upload file</button>
-            </form>
-        </span>
-        <span class="margin15">
-            <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">Submit</button>
-            </form>
-        </span>
+        <form method="post" enctype="multipart/form-data" action="{% url 'clicker_app:upload' %}">
+            {% csrf_token %}
+            <input type="hidden" name="user-id" value ="{{ user.id }}">
+            <input type="file" name ="image" value="image" accept="image/*">
+            <input type="submit" name="submit" value="upload">
+        </form>
     </div>
 
     <div class="bottom0-left0">

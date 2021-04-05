@@ -14,4 +14,5 @@ urlpatterns = [
     path('add_points/', views.AddPoints.as_view(), name='add_points'),
     path('darkmode/', views.Darkmode.as_view(), name='darkmode'),
     path('purchase/', views.Purchase.as_view(), name='purchase'),
+    path('upload_image', views.upload_image, name='upload'),
 ]

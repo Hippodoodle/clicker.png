@@ -41,7 +41,13 @@ Home
 </leftpane>
 <middlepane>
     <h2 class="pane-title">You have <strong id="points_count">{{ user.account.points }}</strong> pixels!</h2>
+
+    {% if user.is_authenticated %}
+    <img src="{{ MEDIA_URL }}{{ user.account.image }}" alt="Clicker image" id="clicker" data-user="{{ user.id }}" data-csrf="{{ csrf_token }}" data-cps="{{ cps }}" data-click-upgraded="{{ upgraded_click }}">
+    {% else %}
     <img src="{% static 'images/logo.jpg' %}" alt="Clicker image" id="clicker" data-user="{{ user.id }}" data-csrf="{{ csrf_token }}" data-cps="{{ cps }}" data-click-upgraded="{{ upgraded_click }}">
+    {% endif %}
+
     <div class="plain">
         <p>Total pixels earned: {{ user.account.lifetime_points }}</p>
         <p>Current number of pixels: {{ user.account.points }}</p>
