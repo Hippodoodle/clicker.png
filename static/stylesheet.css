@@ -81,9 +81,7 @@ input[type=submit]{
 }
 
 footer{
-    position: fixed;
-    left: 0;
-    bottom: 0;
+    margin-top: 10px;
     width: 100%;
     border-top: 2px solid var(--border-color);
     background-color: var(--color-1);
@@ -99,27 +97,27 @@ footer{
     padding: 15px;
 }
 
+#pain {
+    display: flex;
+}
+
 leftpane{
     width: 30%;
-    height: 70%;
-    float: left;
-    /* border-right: 2px solid var(--border-color); */
     position: relative;    
+}
+
+leftpane table {
+    margin-left: 10px;
 }
 
 middlepane{
     width: 40%;
-    height: 70%;
     position: relative;
-    float: left;
     align-items: center;
 }
 
 rightpane{
     width: 30%;
-    height: 70%;
-    float: right;
-    /* border-left: 2px solid var(--border-color); */
     position: relative;
 }
 
@@ -198,7 +196,6 @@ table{
     margin: 15px 15px;
 }
 
-
 .upload-png{
     margin:0;
     display: flex;
@@ -235,7 +232,6 @@ table{
     width: auto;
     border:2px solid var(--border-color);
 }
-
 
 #achievement-table-wrapper th{
     z-index: 2;
