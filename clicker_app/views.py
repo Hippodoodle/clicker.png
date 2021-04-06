@@ -221,7 +221,11 @@ def upload_image(request):
 
 def social_login(request):
     user = request.user
-    account = Account.objects.create(user=user)
-    account.user = user
-    account.save()
-    return redirect(reverse('clicker_app:index'))
+    try:
+        Account.objects.get(user=user)
+        return redirect(reverse('clicker_app:index'))
+    except:
+        account = Account.objects.create(user=user)
+        account.user = user
+        account.save()
+        return redirect(reverse('clicker_app:index'))
