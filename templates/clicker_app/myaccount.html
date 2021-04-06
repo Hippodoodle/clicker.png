@@ -74,7 +74,7 @@ My Account
     </div>
 
     <div class="bottom0-left0">
-        <img id="icon" alt="Clicker Image" src="{% static 'images/logo.jpg'%}" />
+        <img id="icon" alt="Clicker Image" src="{{ MEDIA_URL }}{{ user.account.image }}" />
     </div>
 </div>
 </div>
