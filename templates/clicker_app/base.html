@@ -44,17 +44,19 @@
         </div>
     </header>
 
-    {% block body_block %}
-    default block
-    {% endblock %}
+    <div class="content_wraper">
+        {% block body_block %}
+        default block
+        {% endblock %}
+    </div>
 
-    <footer>
+    <div class="footer">
         <h1>
             <span class="foot_link"><a href="{% url 'clicker_app:index' %}">Homepage</a></span>
             <span class="foot_link"><a href="{% url 'clicker_app:about' %}">About</a></span>
             <span class="foot_link"><a href="{% url 'clicker_app:tutorial' %}">Tutorial</a></span>
         </h1>
-    </footer>
+    </div>
 
     <script src="{% static 'js/jquery-3.3.1.min.js' %}" crossorigin="anonymous"></script>
     <script src="{% static 'js/clicker-ajax.js' %}" crossorigin="anonymous"></script>
