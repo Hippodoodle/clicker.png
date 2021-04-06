@@ -101,7 +101,7 @@ footer{
 }
 
 leftpane{
-    width: 30%;
+    width: 32%;
     height: 70%;
     float: left;
     /* border-right: 2px solid var(--border-color); */
@@ -109,7 +109,7 @@ leftpane{
 }
 
 middlepane{
-    width: 40%;
+    width: 36%;
     height: 70%;
     position: relative;
     float: left;
@@ -117,7 +117,7 @@ middlepane{
 }
 
 rightpane{
-    width: 30%;
+    width: 32%;
     height: 70%;
     float: right;
     /* border-left: 2px solid var(--border-color); */
@@ -134,12 +134,20 @@ th{
     padding: 5px;
 }
 
-table{
+.leaderboard_table{
     padding: 5px;
     width: 95%;
     margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.scrollBox {
+    max-height: 435px;
+    overflow: auto;
+    border: 2px solid var(--border-color);
+    margin-top: auto;
+    margin-left: 5px;
 }
 
 #clicker{
@@ -245,3 +253,6 @@ table{
     top: 0; 
     box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
 }
+
+
+
