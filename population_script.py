@@ -59,7 +59,7 @@ def populate():
     upgrades = [
         {'name': 'Extra Cursor',
          'cost': 10,
-         'effect': 2,
+         'effect': 1,
          'auto_click': False},
         {'name': 'Bigger Cursors',
          'cost': 5000,
