@@ -15,4 +15,5 @@ urlpatterns = [
     path('darkmode/', views.Darkmode.as_view(), name='darkmode'),
     path('purchase/', views.Purchase.as_view(), name='purchase'),
     path('upload_image', views.upload_image, name='upload'),
+    path('social_login', views.social_login, name='social_login'),
 ]

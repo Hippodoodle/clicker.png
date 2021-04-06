@@ -24,10 +24,10 @@
 
     <div id="login-socials-block">
         <h3>or log in using</h3>
-        <a href="{% url 'social:begin' 'facebook' %}">
+        <a href="{% url 'social:begin' backend='facebook' %}">
             <img class="socials-logo" alt="Facebook logo" src="https://upload.wikimedia.org/wikipedia/commons/b/be/Facebook_William_Aditya_Sarana.png" />
         </a>
-        <a href="{% provider_login_url 'google' %}">
+        <a href="{% url 'social:begin' backend='google-oauth2' %}">
             <img class="socials-logo" alt="Google logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
         </a>
     </div>

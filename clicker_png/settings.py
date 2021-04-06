@@ -92,22 +92,15 @@ TEMPLATES = [
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'social_core.backends.facebook.FacebookOAuth2',
-    'allauth.account.auth_backends.AuthenticationBackend',
+    'social_core.backends.google.GoogleOAuth2',
 )
 
 SITE_ID = 2
 
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'scope': [
-            'profile',
-            'email',
-        ],
-        'AUTH_PARAMS': {
-            'access_type': 'online',
-        }
-    }
-}
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = "898302407395-i6p90uhrie6mlh0ffo9ucqlkp6eanedf.apps.googleusercontent.com"
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "UPDIenVDPXn0OHX3XmP_OAAS"
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['profile', 'email']
 
 SOCIAL_AUTH_FACEBOOK_KEY = '2568530290119425'
 SOCIAL_AUTH_FACEBOOK_SECRET = '41ec846575fb2e629a4d3751f49e80d5'
@@ -167,7 +160,7 @@ USE_L10N = True
 USE_TZ = True
 
 LOGIN_URL = 'clicker_app:login'
-LOGIN_REDIRECT_URL = 'clicker_app:index'
+LOGIN_REDIRECT_URL = 'clicker_app:social_login'
 LOGOUT_URL = 'clicker_app:myaccount'
 LOGOUT_REDIRECT_URL = 'clicker_app:index'
 
@@ -185,3 +178,6 @@ STATICFILES_DIRS = [STATIC_DIR, ]
 MEDIA_ROOT = MEDIA_DIR
 
 MEDIA_URL = '/media/'
+
+
+
