@@ -114,6 +114,7 @@ def myaccount(request):
     if request.user.is_authenticated:
         purchased_list = OwnsUpgrade.objects.filter(account=request.user.account)
     else:
+        return redirect(reverse('clicker_app:login'))
         purchased_list = []
 
     clicks_per_second = 0
