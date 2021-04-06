@@ -99,6 +99,7 @@ footer{
 
 #pain {
     display: flex;
+    justify-content: space-between;
 }
 
 leftpane{
@@ -198,7 +199,10 @@ table{
 
 .upload-png{
     margin:0;
+    padding: 10px;
+    margin-right: 10px;
     display: flex;
+    flex-direction: column;
     border: 2px solid var(--border-color);
 }
 
@@ -218,7 +222,6 @@ table{
 #achievement-table-wrapper {
     position:relative;
     margin: 10px;
-    width: 40%;
 }
 
 #achievement-table-scroll {
