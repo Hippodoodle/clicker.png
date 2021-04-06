@@ -102,24 +102,19 @@ footer{
     justify-content: space-between;
 }
 
-leftpane{
-    width: 30%;
-    position: relative;    
-}
-
 leftpane table {
     margin-left: 10px;
 }
 
 middlepane{
-    width: 40%;
-    position: relative;
+    flex-grow: 1;
+    flex-basis: auto;
     align-items: center;
 }
 
 rightpane{
-    width: 30%;
-    position: relative;
+    flex-grow: 1;
+    flex-basis: auto;
 }
 
 table, th, td{
