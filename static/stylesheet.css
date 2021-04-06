@@ -135,11 +135,7 @@ th{
 }
 
 .leaderboard_table{
-    padding: 5px;
-    width: 95%;
-    margin-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
 }
 
 .scrollBox {
@@ -149,6 +145,8 @@ th{
     margin-top: auto;
     margin-left: 5px;
 }
+
+
 
 #clicker{
     display: block;

@@ -63,22 +63,24 @@ Home
 </middlepane>
 <rightpane>
     <h2 class="pane-title">LEADERBOARD</h2>
-    <table class="leaderboard_table">
-        <tr>
-            <th>Rank</th>
-            <th>Username</th>
-            <th>Score</th>
-        </tr>
-        {% for account in leaderboard %}
-        <tr>
-            <td>{{forloop.counter}}</td>
-            <td>{{ account.user.username }}</td>
-            <td>
-            {% if account.user == request.user %}<span id="user-counter">{{ account.lifetime_points }}</span>{% else %}{{ account.lifetime_points }}{% endif %}
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
+    <div class="scrollBox">
+        <table class="leaderboard_table">
+            <tr>
+                <th>Rank</th>
+                <th>Username</th>
+                <th>Score</th>
+            </tr>
+            {% for account in leaderboard %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{ account.user.username }}</td>
+                <td>
+                {% if account.user == request.user %}<span id="user-counter">{{ account.lifetime_points }}</span>{% else %}{{ account.lifetime_points }}{% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
     {% for account in ranking_list %}
         {% if account.user == request.user%}
         <button>Your ranking is: {{forloop.counter}}</button>
