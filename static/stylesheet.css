@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&family=Roboto&display=swap');
 
 h1,h2,h3,h4,h5,h6{
     font-family: 'Noto Sans JP', sans-serif;
@@ -15,12 +14,12 @@ h2 {
     text-align: center;
     padding-left: 5px;
     padding-right: 5px;
-    margin: 0px;
+    margin: 0;
 }
 
 h3{
     font-size: 16pt;
-    margin-top: 0px;
+    margin-top: 0;
     margin-bottom: 5px;
 }
 
@@ -32,7 +31,7 @@ h3{
 body{
     font-family: 'Roboto', sans-serif;
     background-color: var(--color-1);
-    margin: 0px;
+    margin: 0;
     color: var(--text-color);
 }
 
@@ -69,7 +68,6 @@ input[type=submit]{
     font-size: 14pt;
     color: var(--text-color);
     background-color: var(--color-2);
-    margin-left: 5px;
     transition: color 0.3s ease;
 }
 
@@ -79,17 +77,16 @@ input[type=submit]{
 
 .purchase_button{
     width: -webkit-fill-available;
-    margin: 0px;
+    margin: 0;
 }
 
 footer{
-    position: fixed;
-    left: 0;
-    bottom: 0;
+    margin-top: 10px;
     width: 100%;
     border-top: 2px solid var(--border-color);
-    overflow: hidden;
+    background-color: var(--color-1);
 }
+
 .foot_link{
     padding-left: 5px;
     padding-right: 20px;
@@ -100,28 +97,24 @@ footer{
     padding: 15px;
 }
 
-leftpane{
-    width: 30%;
-    height: 70%;
-    float: left;
-    /* border-right: 2px solid var(--border-color); */
-    position: relative;    
+#pain {
+    display: flex;
+    justify-content: space-between;
+}
+
+leftpane table {
+    margin-left: 10px;
 }
 
 middlepane{
-    width: 40%;
-    height: 70%;
-    position: relative;
-    float: left;
+    flex-grow: 1;
+    flex-basis: auto;
     align-items: center;
 }
 
 rightpane{
-    width: 30%;
-    height: 70%;
-    float: right;
-    /* border-left: 2px solid var(--border-color); */
-    position: relative;
+    flex-grow: 1;
+    flex-basis: auto;
 }
 
 table, th, td{
@@ -168,7 +161,7 @@ table{
 }
 
 #login_form{
-    margin: 0px;
+    margin: 0;
     padding: 5px;
 }
 
@@ -199,10 +192,12 @@ table{
     margin: 15px 15px;
 }
 
-
 .upload-png{
     margin:0;
+    padding: 10px;
+    margin-right: 10px;
     display: flex;
+    flex-direction: column;
     border: 2px solid var(--border-color);
 }
 
@@ -221,7 +216,7 @@ table{
 
 #achievement-table-wrapper {
     position:relative;
-    width: 40%;
+    margin: 10px;
 }
 
 #achievement-table-scroll {
@@ -231,10 +226,10 @@ table{
 
 #achievement-table-wrapper table {
     position: relative;
-    margin-top: 0;
+    margin: 0;
+    width: auto;
     border:2px solid var(--border-color);
 }
-
 
 #achievement-table-wrapper th{
     z-index: 2;

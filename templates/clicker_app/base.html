@@ -4,19 +4,23 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'stylesheet.css' %}" type="text/css">
     {% if user.account.darkmode %}
     <link rel="stylesheet" href="{% static 'dark.css' %}" type="text/css">
     {% else %}
     <link rel="stylesheet" href="{% static 'light.css' %}" type="text/css">
     {% endif %}
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&family=Roboto:wght@300&display=swap" rel="stylesheet">
     <title>
         Clicker.png -
         {% block title_block %}
         default
         {% endblock %}
     </title>
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}" crossorigin="anonymous"></script>
+    <script src="{% static 'js/clicker-ajax.js' %}" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -56,8 +60,6 @@
         </h1>
     </footer>
 
-    <script src="{% static 'js/jquery-3.3.1.min.js' %}" crossorigin="anonymous"></script>
-    <script src="{% static 'js/clicker-ajax.js' %}" crossorigin="anonymous"></script>
 
 </body>
 

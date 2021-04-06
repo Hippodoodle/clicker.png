@@ -7,7 +7,10 @@ My Account
 {% endblock %}
 
 {% block body_block %}
-<h2 class="margin15">Welcome back {{user}}! </h2>
+<h2 class="margin15">Welcome back {{user}}!</h2>
+
+<div id="pain">
+<div>
 <div class="plain">
     <p>Total pixels earned: {{ user.account.lifetime_points }}</p>
     <p>Current number of pixels: {{ user.account.points }}</p>
@@ -48,7 +51,9 @@ My Account
         </table>
     </div>
 </div>
+</div>
 
+<div>
 <form method="POST" action="/clicker_app/darkmode/">
     {% csrf_token %}
     <input type="hidden" name="user-id" value="{{ user.id }}">
@@ -71,5 +76,7 @@ My Account
     <div class="bottom0-left0">
         <img id="icon" alt="Clicker Image" src="{{ MEDIA_URL }}{{ user.account.image }}" />
     </div>
+</div>
+</div>
 </div>
 {% endblock %}
