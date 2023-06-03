@@ -7,8 +7,8 @@ Home
 {% endblock %}
 
 {% block body_block %}
-<div id="pain">
-    <leftpane>
+<div class="body-container">
+    <div class="leftpane">
         <h2 class="pane-title">STORE</h2>
         <table>
             <tr>
@@ -40,14 +40,14 @@ Home
             </tr>
             {% endfor %}
         </table>
-    </leftpane>
-    <middlepane>
+    </div>
+    <div class="middlepane">
         <h2 class="pane-title">You have <strong id="points_count">{{ user.account.points }}</strong> pixels!</h2>
 
         {% if user.is_authenticated %}
         <img src="{{ MEDIA_URL }}{{ user.account.image }}" alt="Clicker image" id="clicker" data-user="{{ user.id }}" data-csrf="{{ csrf_token }}" data-cps="{{ cps }}" data-click-upgraded="{{ upgraded_click }}">
         {% else %}
-        <img src="{% static 'images/logo.jpg' %}" alt="Clicker image" id="clicker" data-user="{{ user.id }}" data-csrf="{{ csrf_token }}" data-cps="{{ cps }}" data-click-upgraded="{{ upgraded_click }}">
+        <img src="{% static 'images/logo.png' %}" alt="Clicker image" id="clicker" data-user="{{ user.id }}" data-csrf="{{ csrf_token }}" data-cps="{{ cps }}" data-click-upgraded="{{ upgraded_click }}">
         {% endif %}
 
         <div class="plain">
@@ -60,8 +60,8 @@ Home
         {% else %}
         <p id="upload-png-message"><a href="{% url 'clicker_app:signup' %}">Sign Up</a> to upload your own clicker png!</p>
         {% endif %}
-    </middlepane>
-    <rightpane>
+    </div>
+    <div class="rightpane">
         <h2 class="pane-title">LEADERBOARD</h2>
         <table>
             <tr>
@@ -84,7 +84,7 @@ Home
         <button>Your ranking is: {{forloop.counter}}</button>
         {%endif%}
         {%endfor%}
-    </rightpane>
+    </div>
 </div>
 <script src="{% static 'js/auto-click.js' %}" crossorigin="anonymous"></script>
 {% endblock %}
