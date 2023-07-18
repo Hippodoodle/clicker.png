@@ -140,6 +140,9 @@ a:visited {
     padding: 0 5%;
 }
 
+.body-container .spacer {
+    flex: 5;
+}
 
 /* table, th, td{
     border: 1px solid var(--border-color);

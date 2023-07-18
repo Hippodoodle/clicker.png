@@ -86,11 +86,15 @@ Home
             <p>Pixels per second: {{ cps }}</p>
         </div>
 
-        {% if user.is_authenticated %}
-        <p id="upload-png-message">Go to <a href="{% url 'clicker_app:myaccount' %}">My Account</a> to change your clicker png!</p>
-        {% else %}
-        <p id="upload-png-message"><a href="{% url 'clicker_app:signup' %}">Sign Up</a> to upload your own clicker png!</p>
-        {% endif %}
+        <div class="spacer"></div>
+
+        <div class="change-png-message">
+            {% if user.is_authenticated %}
+            <p id="upload-png-message">Go to <a href="{% url 'clicker_app:myaccount' %}">My Account</a> to change your clicker png!</p>
+            {% else %}
+            <p id="upload-png-message"><a href="{% url 'clicker_app:signup' %}">Sign Up</a> to upload your own clicker png!</p>
+            {% endif %}
+        </div>
     </div>
 
 </div>
