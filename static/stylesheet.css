@@ -117,33 +117,56 @@ a:visited {
 .body-container .leftpane {
     background-color: var(--background);
     border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
+    max-width: 35vw;
 }
 
 .body-container .middlepane {
     height: 90vh;
+    max-width: 35vw;
 }
 
 .body-container .rightpane {
     background-color: var(--background);
     border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-
+    text-align: center;
+    max-width: 30vw;
 }
 
 #clicker {
     max-height: 90%;
-    max-width: 100%;
+    max-width: 90%;
 }
 
 .shop {
     order: 2;
-    height: 80vh;
-    width: 80%;
+    height: 85vh;
+    width: 90%;
     background-color: var(--secondary);
     color: var(--text);
-    border-radius: 5px;
+    /*border-radius: 5px;*/
     padding: 0 5%;
+    overflow-x: scroll;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 15px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--navbar);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+}
+
+::-webkit-scrollbar-corner {
+    background: var(--secondary);
 }
 
 .body-container .spacer {
