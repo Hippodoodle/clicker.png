@@ -107,6 +107,7 @@ a:visited {
     display: flex;
     justify-content: space-between;
     height: 90vh;
+    background-color: var(--navbar);
 }
 
 .body-container table {
@@ -114,7 +115,9 @@ a:visited {
 }
 
 .body-container .leftpane {
-    
+    background-color: var(--background);
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 .body-container .middlepane {
@@ -122,6 +125,9 @@ a:visited {
 }
 
 .body-container .rightpane {
+    background-color: var(--background);
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
 
 }
 
@@ -298,7 +304,6 @@ input[type=submit]{
 /* Left */
 
 .myaccount-body .leftpane {
-    order: 1;
 }
 
 .myaccount-stats {
@@ -312,7 +317,6 @@ input[type=submit]{
 /* Middle */
 
 .myaccount-body .middlepane {
-    order: 2;
 }
 
 .achievements-table-scroll {
@@ -322,7 +326,6 @@ input[type=submit]{
 /* Right */
 
 .myaccount-body .rightpane {
-    order: 3;
     height: 90vh;
 }
 
