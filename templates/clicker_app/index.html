@@ -8,61 +8,55 @@ Home
 
 {% block body_block %}
 <div class="body-container">
+
     <div class="leftpane">
-        <h2 class="pane-title">STORE</h2>
-        <table>
-            <tr>
-                <th>Upgrade</th>
-                <th>Price</th>
-                <th>Purchased</th>
-                <th>Effect</th>
-                <th>Auto</th>
-            </tr>
-            {% for key, value in upgrade_table.items %}
-            <tr>
-                <td><button id="upgrade-{{ key.id }}" class="purchase_button" data-user="{{ user.id }}"
-                        data-upgrade="{{ key.id }}" data-csrf="{{ csrf_token }}">{{ key.name }}</button></td>
-                {% for item in value %}
-                <td id="upgrade-{{ key.id }}-{{ forloop.counter }}" class="upgrade-values">
-                    {% if forloop.counter == 1 %}
-                    <script>
-                        x = {% for item in purchased_list %}{% if item.upgrade == key %} {{ item.upgrade.cost }} {% endif %} {% endfor %};
-                        x = x * Math.pow(1.15, {% for item in purchased_list %}{% if item.upgrade == key %} {{ item.quantity }} {% endif %} {% endfor %});
-                        document.getElementById("upgrade-{{ key.id }}-1").innerHTML = Math.floor(x);
-                    </script>
-                    {% else %}
-                    {{ item }}
-                    {% endif %}
-                </td>
+        <div class="pane-title">STORE</div>
+        <div class="shop">
+            <table>
+                <tr>
+                    <th>Upgrade</th>
+                    <th>Price</th>
+                    <th>Purchased</th>
+                    <th>Effect</th>
+                    <th>Auto</th>
+                </tr>
+                {% for key, value in upgrade_table.items %}
+                <tr>
+                    <td><button id="upgrade-{{ key.id }}" class="purchase_button" data-user="{{ user.id }}"
+                            data-upgrade="{{ key.id }}" data-csrf="{{ csrf_token }}">{{ key.name }}</button></td>
+                    {% for item in value %}
+                    <td id="upgrade-{{ key.id }}-{{ forloop.counter }}" class="upgrade-values">
+                        {% if forloop.counter == 1 %}
+                        <script>
+                            x = {% for item in purchased_list %}{% if item.upgrade == key %} {{ item.upgrade.cost }} {% endif %} {% endfor %};
+                            x = x * Math.pow(1.15, {% for item in purchased_list %}{% if item.upgrade == key %} {{ item.quantity }} {% endif %} {% endfor %});
+                            document.getElementById("upgrade-{{ key.id }}-1").innerHTML = Math.floor(x);
+                        </script>
+                        {% else %}
+                        {{ item }}
+                        {% endif %}
+                    </td>
+                    {% endfor %}
+                    <td>{{ key.effect }}</td>
+                    <td style="text-align: center;">{% if key.auto_click %}&#10003;{% endif %}</td>
+                </tr>
                 {% endfor %}
-                <td>{{ key.effect }}</td>
-                <td style="text-align: center;">{% if key.auto_click %}&#10003;{% endif %}</td>
-            </tr>
-            {% endfor %}
-        </table>
+            </table>
+        </div>
     </div>
+
     <div class="middlepane">
-        <h2 class="pane-title">You have <strong id="points_count">{{ user.account.points }}</strong> pixels!</h2>
+        <div class="pane-title">You have <strong id="points_count">{{ user.account.points }}</strong> pixels!</div>
 
         {% if user.is_authenticated %}
         <img src="{{ MEDIA_URL }}{{ user.account.image }}" alt="Clicker image" id="clicker" data-user="{{ user.id }}" data-csrf="{{ csrf_token }}" data-cps="{{ cps }}" data-click-upgraded="{{ upgraded_click }}">
         {% else %}
         <img src="{% static 'images/logo.png' %}" alt="Clicker image" id="clicker" data-user="{{ user.id }}" data-csrf="{{ csrf_token }}" data-cps="{{ cps }}" data-click-upgraded="{{ upgraded_click }}">
         {% endif %}
-
-        <div class="plain">
-            <p>Total pixels earned: {{ user.account.lifetime_points }}</p>
-            <p>Current number of pixels: {{ user.account.points }}</p>
-            <p>Pixels per second: {{ cps }}</p>
-        </div>
-        {% if user.is_authenticated %}
-        <p id="upload-png-message">Go to <a href="{% url 'clicker_app:myaccount' %}">My Account</a> to change your clicker png!</p>
-        {% else %}
-        <p id="upload-png-message"><a href="{% url 'clicker_app:signup' %}">Sign Up</a> to upload your own clicker png!</p>
-        {% endif %}
     </div>
+
     <div class="rightpane">
-        <h2 class="pane-title">LEADERBOARD</h2>
+        <div class="pane-title">LEADERBOARD</div>
         <table>
             <tr>
                 <th>Rank</th>
@@ -84,7 +78,19 @@ Home
         <button>Your ranking is: {{forloop.counter}}</button>
         {%endif%}
         {%endfor%}
+
+        <div class="plain">
+            <p>Total pixels earned: {{ user.account.lifetime_points }}</p>
+            <p>Current number of pixels: {{ user.account.points }}</p>
+            <p>Pixels per second: {{ cps }}</p>
+        </div>
+        {% if user.is_authenticated %}
+        <p id="upload-png-message">Go to <a href="{% url 'clicker_app:myaccount' %}">My Account</a> to change your clicker png!</p>
+        {% else %}
+        <p id="upload-png-message"><a href="{% url 'clicker_app:signup' %}">Sign Up</a> to upload your own clicker png!</p>
+        {% endif %}
     </div>
+
 </div>
 <script src="{% static 'js/auto-click.js' %}" crossorigin="anonymous"></script>
 {% endblock %}
