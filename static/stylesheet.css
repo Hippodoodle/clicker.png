@@ -4,8 +4,8 @@
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
-    background-color: var(--color-1);
-    color: var(--text-color-1);
+    background-color: var(--background);
+    color: var(--text);
 }
 
 /* Header */
@@ -20,7 +20,7 @@ body {
     list-style: none;
     margin: 0;
     padding: 0;
-    background-color: var(--nav-bar);
+    background-color: var(--navbar);
     /* border-bottom: 2px solid var(--border-color); */
 }
 
@@ -37,7 +37,7 @@ body {
 }
 
 .logo a:visited {
-    color: var(--text-color-1);
+    color: var(--text);
 }
 
 .logo a img {
@@ -54,12 +54,12 @@ body {
     padding: 2em 1em;
     height: 10vh;
     text-decoration: none;
-    color: var(--text-color-1);
+    color: var(--text);
 }
 
 .header-link a:hover {
-    background-color: var(--hover-color);
-    color: var(--text-color-2);
+    background-color: var(--accent);
+    color: var(--background);
 }
 
 /* Body */
@@ -110,7 +110,8 @@ body {
     order: 2;
     height: 80vh;
     width: 80%;
-    background-color: var(--color-2);
+    background-color: var(--secondary);
+    color: var(--text);
 }
 
 
