@@ -1,10 +1,10 @@
 $(document).ready(function () {
 
     $('#clicker').click(function () {
-        var a;
+        let a, clicks;
         a = $(this).attr('data-user');
         clicks = $(this).attr('data-click-upgraded');
-        token = $(this).attr('data-csrf');
+        const token = $(this).attr('data-csrf');
 
         $.ajax({
             url: '/clicker_app/add_points/',
@@ -13,15 +13,15 @@ $(document).ready(function () {
                 $('#points_count').html(data.points);
                 $('#user-counter').html(data.lifetime_points);
             },
-            headers: {'X-CSRFToken': token},
-            data: {'a': a, 'clicks': clicks}
+            headers: { 'X-CSRFToken': token },
+            data: { 'a': a, 'clicks': clicks }
         })
     });
 
     $('#darkmode-button').click(function () {
-        var d;
+        let d;
         d = $(this).attr('data-user');
-        token = $(this).attr('data-csrf');
+        const token = $(this).attr('data-csrf');
 
         $.ajax({
             url: '/clicker_app/darkmode/',
@@ -29,23 +29,19 @@ $(document).ready(function () {
             success: function (data) {
                 $('#darkmode-button').html(data);
             },
-            headers: {'X-CSRFToken': token},
-            data: {'user-id': d}
+            headers: { 'X-CSRFToken': token },
+            data: { 'user-id': d }
         })
     });
 
     $('.purchase_button').click(function () {
-        var a = $(this).attr('data-user');
-        var token = $(this).attr('data-csrf');
-        var upgrade = $(this).attr('data-upgrade');
+        let a, upgrade;
+        a = $(this).attr('data-user');
+        upgrade = $(this).attr('data-upgrade');
+        const token = $(this).attr('data-csrf');
 
-        var s11 = '#upgrade-'
-        var s12 = String(upgrade)
-        var s13 = '-1'
-        var s1 =  s11.concat(s12, s13);
-
-        var s23 = '-2'
-        var s2 =  s11.concat(s12, s23);
+        let s1 = "#upgrade-" + String(upgrade) + "-1";
+        let s2 = "#upgrade-" + String(upgrade) + "-2";
 
         $.ajax({
             url: '/clicker_app/purchase/',
@@ -55,8 +51,8 @@ $(document).ready(function () {
                 $(s2).html(data.quantity);
                 location.reload();
             },
-            headers: {'X-CSRFToken': token},
-            data: {'user-id': a, 'upgrade': upgrade}
+            headers: { 'X-CSRFToken': token },
+            data: { 'user-id': a, 'upgrade': upgrade }
         })
     });
 

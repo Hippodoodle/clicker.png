@@ -1,10 +1,11 @@
-$(document).ready(function() {
+$(document).ready(function () {
+
     $('#clicker').ready(function () {
-        setInterval(function() {
-            var a;
+        setInterval(function () {
+            let a, clicks;
             a = $('#clicker').attr('data-user');
             clicks = $('#clicker').attr('data-cps');
-            token = $('#clicker').attr('data-csrf');
+            const token = $('#clicker').attr('data-csrf');
 
             $.ajax({
                 url: '/clicker_app/add_points/',
@@ -13,11 +14,10 @@ $(document).ready(function() {
                     $('#points_count').html(data.points);
                     $('#user-counter').html(data.lifetime_points);
                 },
-                headers: {'X-CSRFToken': token},
-                data: {'a': a, 'clicks': clicks}
+                headers: { 'X-CSRFToken': token },
+                data: { 'a': a, 'clicks': clicks }
             })
-
         }, 1000);
-
     });
+
 })
