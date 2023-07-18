@@ -46,7 +46,7 @@ Home
     </div>
 
     <div class="middlepane">
-        <div class="pane-title">You have <strong id="points_count">{{ user.account.points }}</strong> pixels!</div>
+        <div class="pane-title">You have <strong class="points-count">{{ user.account.points }}</strong> pixels!</div>
 
         {% if user.is_authenticated %}
         <img src="{{ MEDIA_URL }}{{ user.account.image }}" alt="Clicker image" id="clicker" data-user="{{ user.id }}" data-csrf="{{ csrf_token }}" data-cps="{{ cps }}" data-click-upgraded="{{ upgraded_click }}">
@@ -68,22 +68,24 @@ Home
                 <td>{{forloop.counter}}</td>
                 <td>{{ account.user.username }}</td>
                 <td>
-                    {% if account.user == request.user %}<span id="user-counter">{{ account.lifetime_points }}</span>{%else %}{{ account.lifetime_points }}{% endif %}
+                    {% if account.user == request.user %}<span class="lifetime-points">{{ account.lifetime_points }}</span>{%else %}{{ account.lifetime_points }}{% endif %}
                 </td>
             </tr>
             {% endfor %}
         </table>
+
         {% for account in ranking_list %}
-        {% if account.user == request.user%}
-        <button>Your ranking is: {{forloop.counter}}</button>
-        {%endif%}
+            {% if account.user == request.user %}
+                <button>Your ranking is: {{forloop.counter}}</button>
+            {%endif%}
         {%endfor%}
 
-        <div class="plain">
-            <p>Total pixels earned: {{ user.account.lifetime_points }}</p>
-            <p>Current number of pixels: {{ user.account.points }}</p>
+        <div class="stats">
+            <p>Total pixels earned: <span class="lifetime-points">{{ user.account.lifetime_points }}</span></p>
+            <p>Current number of pixels: <span class="points-count">{{ user.account.points }}</span></p>
             <p>Pixels per second: {{ cps }}</p>
         </div>
+
         {% if user.is_authenticated %}
         <p id="upload-png-message">Go to <a href="{% url 'clicker_app:myaccount' %}">My Account</a> to change your clicker png!</p>
         {% else %}
