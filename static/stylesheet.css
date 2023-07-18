@@ -54,6 +54,8 @@ body {
     padding: 2em 1em;
     height: 10vh;
     text-decoration: none;
+    font-size: large;
+    font-weight: bold;
     color: var(--text);
 }
 
@@ -62,17 +64,7 @@ body {
     color: var(--background);
 }
 
-/* Body */
-
-.body-container {
-    display: flex;
-    justify-content: space-between;
-    height: 90vh;
-}
-
-.body-container table {
-    margin: 10px 0 0 0;
-}
+/* Default Pane Behaviour */
 
 .leftpane {
     order: 1;
@@ -98,12 +90,35 @@ body {
     align-items: center;
 }
 
-/* Shop */
-.leftpane .pane-title {
+.pane-title {
     order: 1;
     padding: 0.5em 0;
     font-weight: bold;
     font-size: 1.5em;
+}
+
+/* Body */
+
+.body-container {
+    display: flex;
+    justify-content: space-between;
+    height: 90vh;
+}
+
+.body-container table {
+    margin: 10px 0 0 0;
+}
+
+.body-container .leftpane {
+    
+}
+
+.body-container .middlepane {
+
+}
+
+.body-container .rightpane {
+
 }
 
 .shop {
@@ -112,6 +127,8 @@ body {
     width: 80%;
     background-color: var(--secondary);
     color: var(--text);
+    border-radius: 5px;
+    padding: 0 5%;
 }
 
 
@@ -262,12 +279,61 @@ input[type=submit]{
 
 /* My Account */
 
+.myaccount-body {
+    display: flex;
+    flex-direction: row;
+    height: 90vh;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.myaccount-body .pane-title {
+    order: 0;
+}
+
+/* Left */
+
+.myaccount-body .leftpane {
+    order: 1;
+}
+
+.myaccount-stats {
+    order: 1;
+}
+
+.darkmode {
+    order: 2;
+}
+
+/* Middle */
+
+.myaccount-body .middlepane {
+    order: 2;
+}
+
+.achievements-table-scroll {
+    overflow-y: scroll;
+}
+
+/* Right */
+
+.myaccount-body .rightpane {
+    order: 3;
+    height: 90vh;
+}
+
+.image-form {
+    padding: 1em 0;
+}
+
 .image-preview {
-    height: 30vh;
+    height: 60%;
+    max-width: 90%;
     object-fit: contain;
 }
 
 .image-preview img {
     max-height: 100%;
+    max-width: 100%;
     border: 1px solid black;
 }
