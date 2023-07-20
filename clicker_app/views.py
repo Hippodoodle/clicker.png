@@ -11,7 +11,7 @@ from django.views import View
 
 def index(request):
 
-    upgrades_list = Upgrade.objects.order_by('cost')
+    upgrades_list = Upgrade.objects.order_by("cost")
     upgrade_table_dict = {}
 
     for item in upgrades_list:
@@ -27,9 +27,9 @@ def index(request):
             upgrade_table_dict[p.upgrade][1] = p.quantity
 
     # TODO: remove list index for whole leaderboard  when scrolling is implememnted
-    leaderboard_list = Account.objects.order_by('-lifetime_points')[:10]
+    leaderboard_list = Account.objects.order_by("-lifetime_points")[:10]
 
-    ranking_list = Account.objects.order_by('-lifetime_points')
+    ranking_list = Account.objects.order_by("-lifetime_points")
 
     clicks_per_second = 0
     for item in purchased_list:
@@ -42,49 +42,49 @@ def index(request):
             upgraded_click += item.upgrade.effect*item.quantity
 
     context_dict = {
-        'leaderboard': leaderboard_list,
-        'upgrade_table': upgrade_table_dict,
-        'purchased_list': purchased_list,
-        'ranking_list': ranking_list,
-        'cps': clicks_per_second,
-        'upgraded_click': upgraded_click,
+        "leaderboard": leaderboard_list,
+        "upgrade_table": upgrade_table_dict,
+        "purchased_list": purchased_list,
+        "ranking_list": ranking_list,
+        "cps": clicks_per_second,
+        "upgraded_click": upgraded_click,
     }
-    response = render(request, 'clicker_app/index.html', context=context_dict)
+    response = render(request, "clicker_app/index.html", context=context_dict)
     return response
 
 
 def about(request):
-    response = render(request, 'clicker_app/about.html')
+    response = render(request, "clicker_app/about.html")
     return response
 
 
 def tutorial(request):
-    response = render(request, 'clicker_app/tutorial.html')
+    response = render(request, "clicker_app/tutorial.html")
     return response
 
 
 def login_view(request):
     if request.method == "POST":
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+        username = request.POST.get("username")
+        password = request.POST.get("password")
         user = authenticate(username=username, password=password)
         if user:
             if user.is_active:
                 login(request, user)
-                return redirect(reverse('clicker_app:index'))
+                return redirect(reverse("clicker_app:index"))
             else:
                 return HttpResponse("Your account is disabled")
         else:
             print("Invalid login details, please try again")
             return HttpResponse("Invalid login details supplied")
     else:
-        response = render(request, 'clicker_app/login.html')
+        response = render(request, "clicker_app/login.html")
         return response
 
 
 def signup(request):
     registered = False  # registration unsuccessful initially
-    if request.method == 'POST':  # if form is post, attempt to process
+    if request.method == "POST":  # if form is post, attempt to process
         user_form = UserForm(request.POST)  # take information from form
         if user_form.is_valid():
             user = user_form.save()
@@ -104,8 +104,8 @@ def signup(request):
             print(user_form.errors)  # invalid attempt
     else:
         user_form = UserForm()  # give blank form ready to receive data
-    response = render(request, 'clicker_app/signup.html',
-                      context={'user_form': user_form, 'registered': registered})
+    response = render(request, "clicker_app/signup.html",
+                      context={"user_form": user_form, "registered": registered})
     return response
 
 
@@ -114,7 +114,7 @@ def myaccount(request):
     if request.user.is_authenticated:
         purchased_list = OwnsUpgrade.objects.filter(account=request.user.account)
     else:
-        return redirect(reverse('clicker_app:login'))
+        return redirect(reverse("clicker_app:login"))
         purchased_list = []
 
     clicks_per_second = 0
@@ -125,24 +125,24 @@ def myaccount(request):
     all_achievements = Achievement.objects.all()
 
     context_dict = {
-        'all_achievements': all_achievements,
-        'cps': clicks_per_second,
+        "all_achievements": all_achievements,
+        "cps": clicks_per_second,
     }
 
-    response = render(request, 'clicker_app/myaccount.html', context=context_dict)
+    response = render(request, "clicker_app/myaccount.html", context=context_dict)
     return response
 
 
 @login_required
 def logout_view(request):
     logout(request)
-    return redirect(reverse('clicker_app:index'))
+    return redirect(reverse("clicker_app:index"))
 
 
 class AddPoints(View):
     def post(self, request):
-        a = request.POST.get('a', None)
-        clicks = request.POST.get('clicks', 1)
+        a = request.POST.get("a", None)
+        clicks = request.POST.get("clicks", 1)
 
         try:
             user_account = Account.objects.get(user__id=a)
@@ -155,14 +155,14 @@ class AddPoints(View):
         user_account.save()
 
         return JsonResponse({
-            'points': user_account.points,
-            'lifetime_points': user_account.lifetime_points,
+            "points": user_account.points,
+            "lifetime_points": user_account.lifetime_points,
         })
 
 
 class Darkmode(View):
     def post(self, request):
-        user_id = request.POST.get('user-id', None)
+        user_id = request.POST.get("user-id", None)
 
         try:
             user_account = Account.objects.get(user__id=user_id)
@@ -178,8 +178,8 @@ class Darkmode(View):
 
 class Purchase(View):
     def post(self, request):
-        user_id = request.POST.get('user-id', None)
-        upgrade = request.POST.get('upgrade', None)
+        user_id = request.POST.get("user-id", None)
+        upgrade = request.POST.get("upgrade", None)
 
         try:
             user_account = Account.objects.get(user__id=user_id)
@@ -188,20 +188,20 @@ class Purchase(View):
         except Exception:
             return HttpResponse("-1?-1")
 
-        cost_instance = int(owns_upgrade.upgrade.cost*(1.15**owns_upgrade.quantity))
+        cost_instance = int(owns_upgrade.upgrade.cost * (1.15 ** owns_upgrade.quantity))
 
         if user_account.points >= cost_instance:
             owns_upgrade.quantity += 1
             user_account.points = user_account.points - cost_instance
             user_account.save()
             owns_upgrade.save()
-            cost_instance = int(owns_upgrade.upgrade.cost*(1.15**owns_upgrade.quantity))
+            cost_instance = int(owns_upgrade.upgrade.cost * (1.15 ** owns_upgrade.quantity))
 
         owns_upgrade.save()
 
         return JsonResponse({
-            'cost_instance': str(cost_instance),
-            'quantity': str(owns_upgrade.quantity),
+            "cost_instance": str(cost_instance),
+            "quantity": str(owns_upgrade.quantity),
         })
 
 
@@ -210,23 +210,25 @@ def upload_image(request):
         image_form = ImageUpload(request.POST, request.FILES)
         if image_form.is_valid():
             image_form.save(commit=False)
-            account_id = request.POST.get('user-id')
-            if 'image' in image_form.files.keys():
-                new_image = image_form.files['image']
+            account_id = request.POST.get("user-id")
+            if "image" in image_form.files.keys():
+                new_image = image_form.files["image"]
                 user_account = Account.objects.get(user__id=account_id)
+                old_image = user_account.image
+                old_image.delete()
                 user_account.image = new_image
                 user_account.save()
 
-    return redirect(reverse('clicker_app:myaccount'))
+    return redirect(reverse("clicker_app:myaccount"))
 
 
 def social_login(request):
     user = request.user
     try:
         Account.objects.get(user=user)
-        return redirect(reverse('clicker_app:index'))
+        return redirect(reverse("clicker_app:index"))
     except:
         account = Account.objects.create(user=user)
         account.user = user
         account.save()
-        return redirect(reverse('clicker_app:index'))
+        return redirect(reverse("clicker_app:index"))
