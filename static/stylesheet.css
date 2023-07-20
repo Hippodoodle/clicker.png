@@ -327,6 +327,24 @@ input[type=submit]{
 /* Left */
 
 .myaccount-body .leftpane {
+    
+}
+
+@media (max-width: 1000px) {
+    .myaccount-body {
+        flex-direction: column;
+        align-items: center;
+        height: 90vh;
+        width: 100vh;
+    }
+
+    .myaccount-body .middlepane {
+        width: 50vw;
+    }
+
+    .myaccount-body .rightpane {
+        width: 50vw;
+    }
 }
 
 .myaccount-stats {
@@ -340,6 +358,7 @@ input[type=submit]{
 /* Middle */
 
 .myaccount-body .middlepane {
+
 }
 
 .achievements-table-scroll {
@@ -349,7 +368,7 @@ input[type=submit]{
 /* Right */
 
 .myaccount-body .rightpane {
-    height: 90vh;
+    height: 100%;
 }
 
 .image-form {
