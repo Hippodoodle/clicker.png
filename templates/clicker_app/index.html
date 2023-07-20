@@ -12,7 +12,7 @@ Home
     <div class="leftpane">
         <div class="pane-title">STORE</div>
         <div class="shop">
-            <table>
+            {% comment %} <table>
                 <tr>
                     <th>Upgrade</th>
                     <th>Price</th>
@@ -41,7 +41,28 @@ Home
                     <td style="text-align: center;">{% if key.auto_click %}&#10003;{% endif %}</td>
                 </tr>
                 {% endfor %}
-            </table>
+            </table> {% endcomment %}
+
+            {% for key, value in upgrade_table.items %}
+            <div id="upgrade-{{ key.id }}" class="shop-item">
+                <div class="shop-item-name">
+                    {{ key.name }}
+                </div>
+                <div class="shop-item-effect">
+                    {{ key.effect }} {% if key.auto_click %} pixels/second {% else %} pixels/click {% endif %}
+                </div>
+                <div class="shop-item-numpurchased">
+                    x{{ value.1 }}
+                </div>
+                <div id="upgrade-{{ key.id }}-price" class="shop-item-price">
+                    <script>
+                        x = {% for item in purchased_list %}{% if item.upgrade == key %} {{ item.upgrade.cost }} {% endif %} {% endfor %};
+                        x = x * Math.pow(1.15, {% for item in purchased_list %}{% if item.upgrade == key %} {{ item.quantity }} {% endif %} {% endfor %});
+                        document.getElementById("upgrade-{{ key.id }}-price").innerHTML = String(Math.floor(x)) + " pixels";
+                    </script>
+                </div>
+            </div>
+            {% endfor %}
         </div>
     </div>
 
