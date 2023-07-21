@@ -101,17 +101,34 @@ a:visited {
     font-size: 1.5em;
 }
 
-/* Body */
+::-webkit-scrollbar {
+    width: 10px;
+    /* height: 15px; */
+}
+
+::-webkit-scrollbar-track {
+    background: var(--secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--navbar);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+}
+
+::-webkit-scrollbar-corner {
+    background: var(--secondary);
+}
+
+/* Game Page */
 
 .body-container {
     display: flex;
     justify-content: space-between;
     height: 90vh;
     background-color: var(--navbar);
-}
-
-.body-container table {
-    margin: 10px 0 0 0;
 }
 
 .body-container .leftpane {
@@ -122,8 +139,8 @@ a:visited {
 }
 
 .body-container .middlepane {
-    height: 90vh;
     max-width: 35vw;
+    padding: 10px;
 }
 
 .body-container .rightpane {
@@ -131,20 +148,26 @@ a:visited {
     border-top-left-radius: 20px;
     text-align: center;
     max-width: 30vw;
+    padding: 10px;
+}
+
+.body-container .spacer {
+    flex: 5;
 }
 
 #clicker {
-    max-height: 90%;
-    max-width: 90%;
+    max-height: 100%;
+    max-width: 100%;
 }
 
+/* Shop */
+
 .shop {
-    order: 2;
+    order: 1;
     height: 85vh;
     width: 100%;
     background-color: var(--background);
     color: var(--text);
-    /*border-radius: 5px;*/
     overflow-y: scroll;
 }
 
@@ -192,29 +215,40 @@ a:visited {
     text-align: end;
 }
 
-::-webkit-scrollbar {
-    width: 10px;
-    /* height: 15px; */
+/* Leaderboard */
+
+.leaderboard {
+    order: 1;
+    width: 100%;
+    background-color: var(--background);
+    color: var(--text);
 }
 
-::-webkit-scrollbar-track {
-    background: var(--secondary);
+.leaderboard table, th, td {
+    width: 100%;
+    border: 1px solid var(--text);
+    border-collapse: collapse;
 }
 
-::-webkit-scrollbar-thumb {
-    background: var(--navbar);
+.leaderboard tbody {
+    display: block;
+    overflow-y: scroll;
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: var(--accent);
+.leaderboard th {
+    position: sticky;
 }
 
-::-webkit-scrollbar-corner {
-    background: var(--secondary);
+.rightpane .stats {
+    order: 2;
 }
 
-.body-container .spacer {
-    flex: 5;
+.rightpane .spacer {
+    order: 3;
+}
+
+.change-png-message {
+    order: 4;
 }
 
 /* table, th, td{
