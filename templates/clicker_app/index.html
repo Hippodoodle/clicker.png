@@ -14,7 +14,7 @@ Home
 
         <div class="shop">
             {% for key, value in upgrade_table.items %}
-            <div id="upgrade-{{ key.id }}" class="shop-item">
+            <div id="upgrade-{{ key.id }}" class="shop-item" data-user="{{ user.id }}" data-upgrade="{{ key.id }}" data-csrf="{{ csrf_token }}">
                 <div class="shop-item-name">
                     {{ key.name }}
                 </div>

@@ -34,7 +34,7 @@ $(document).ready(function () {
         })
     });
 
-    $(".purchase_button").click(function () {
+    $(".shop-item").click(function () {
         let a, upgrade;
         a = $(this).attr("data-user");
         upgrade = $(this).attr("data-upgrade");
