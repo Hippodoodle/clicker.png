@@ -23,7 +23,7 @@ def populate():
          'condition': 64,
          'current_score_achievement': True},
         {'name': 'Looking Good!',
-         'description': 'Own 384 pixels at once. Enough for a minecraft bloack!',
+         'description': 'Own 384 pixels at once. Enough for a minecraft block!',
          'condition': 384,
          'current_score_achievement': True},
         {'name': 'Four Zeroes',
