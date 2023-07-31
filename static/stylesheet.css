@@ -155,6 +155,10 @@ a:visited {
     flex: 5;
 }
 
+.clicker-container {
+    overflow-y: hidden;
+}
+
 #clicker {
     max-height: 100%;
     max-width: 100%;
