@@ -224,7 +224,7 @@ a:visited {
     color: var(--text);
 }
 
-.leaderboard table, th, td {
+.leaderboard table, .leaderboard th, .leaderboard td {
     width: 100%;
     border: 1px solid var(--text);
     border-collapse: collapse;
@@ -391,39 +391,54 @@ input[type=submit]{
 /* My Account */
 
 .myaccount-body {
-    display: flex;
-    flex-direction: row;
     height: 90vh;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
+    grid-template-areas:
+        "stats image"
+        "achievements image";
+}
+
+.myaccount-summary-colour {
+    background-color: var(--navbar);
+}
+
+.myaccount-summary {
+    height: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    grid-area: stats;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--background);
+    border-top-right-radius: 20px;
+}
+
+.myaccount-achievements {
+    padding: 5px;
+    grid-area: achievements;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.myaccount-image {
+    grid-area: image;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+    background-color: var(--navbar);
+    border-bottom-left-radius: 20px;
 }
 
 .myaccount-body .pane-title {
     order: 0;
 }
 
-/* Left */
-
-.myaccount-body .leftpane {
-    
-}
-
-@media (max-width: 1000px) {
-    .myaccount-body {
-        flex-direction: column;
-        align-items: center;
-        height: 90vh;
-        width: 100vh;
-    }
-
-    .myaccount-body .middlepane {
-        width: 50vw;
-    }
-
-    .myaccount-body .rightpane {
-        width: 50vw;
-    }
-}
+/* Top Left */
 
 .myaccount-stats {
     order: 1;
@@ -433,21 +448,23 @@ input[type=submit]{
     order: 2;
 }
 
-/* Middle */
-
-.myaccount-body .middlepane {
-
-}
+/* Bottom Left */
 
 .achievements-table-scroll {
+    height: 100%;
     overflow-y: scroll;
 }
 
-/* Right */
-
-.myaccount-body .rightpane {
-    height: 100%;
+.achievements-table-scroll table, th, td {
+    border: 1px solid var(--text);
+    border-collapse: collapse;
 }
+
+.achievements-table-scroll th {
+    position: sticky;
+}
+
+/* Right */
 
 .image-form {
     padding: 1em 0;
@@ -462,5 +479,5 @@ input[type=submit]{
 .image-preview img {
     max-height: 100%;
     max-width: 100%;
-    border: 1px solid black;
+    border: 1px solid var(--text);
 }

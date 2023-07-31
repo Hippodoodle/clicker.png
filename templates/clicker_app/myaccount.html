@@ -9,60 +9,58 @@ My Account
 {% block body_block %}
 <div class="myaccount-body">
 
-    <div class="leftpane">
-        <div class="pane-title">{{user}}</div>
+    <div class="myaccount-summary-colour">
+        <div class="myaccount-summary">
+            <div class="pane-title">{{user}}</div>
 
-        <div class="myaccount-stats">
-            <p>Total pixels earned: {{ user.account.lifetime_points }}</p>
-            <p>Current number of pixels: {{ user.account.points }}</p>
-            <p>Pixels per second: {{ cps }}</p>
-        </div>
+            <div class="myaccount-stats">
+                <p>Total pixels earned: {{ user.account.lifetime_points }}</p>
+                <p>Current number of pixels: {{ user.account.points }}</p>
+                <p>Pixels per second: {{ cps }}</p>
+            </div>
 
-        <div class="darkmode">
-            <form method="POST" action="/clicker_app/darkmode/">
-                {% csrf_token %}
-                <input type="hidden" name="user-id" value="{{ user.id }}">
-                <input type="submit" value="{% if user.account.darkmode %}Lightmode{% else %}Darkmode{% endif %}">
-            </form>
+            <div class="darkmode">
+                <form method="POST" action="/clicker_app/darkmode/">
+                    {% csrf_token %}
+                    <input type="hidden" name="user-id" value="{{ user.id }}">
+                    <input type="submit" value="{% if user.account.darkmode %}Lightmode{% else %}Darkmode{% endif %}">
+                </form>
+            </div>
         </div>
     </div>
 
-    <div class="middlepane">
+    <div class="myaccount-achievements">
         <div class="pane-title">Achievements</div>
 
         <div class="achievements-table-scroll">
             <table>
-                <thead>
-                    <tr>
-                        <th><span class="achievements-table-title">Name</span></th>
-                        <th><span class="achievements-table-title">Description</span></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for achievement in all_achievements %}
-                    <tr>
-                        <td>{{ achievement.name }}</td>
-                        {% if achievement.current_score_achievement %}
-                            {% if user.account.points >= achievement.condition %}
-                            <td>{{ achievement.description }}</td>
-                            {% else %}
-                            <td>???</td>
-                            {% endif %}
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                </tr>
+                {% for achievement in all_achievements %}
+                <tr>
+                    <td>{{ achievement.name }}</td>
+                    {% if achievement.current_score_achievement %}
+                        {% if user.account.points >= achievement.condition %}
+                        <td>{{ achievement.description }}</td>
                         {% else %}
-                            {% if user.account.lifetime_points >= achievement.condition %}
-                            <td>{{ achievement.description }}</td>
-                            {% else %}
-                            <td>???</td>
-                            {% endif %}
+                        <td>???</td>
                         {% endif %}
-                    </tr>
-                    {%endfor%}
-                </tbody>
+                    {% else %}
+                        {% if user.account.lifetime_points >= achievement.condition %}
+                        <td>{{ achievement.description }}</td>
+                        {% else %}
+                        <td>???</td>
+                        {% endif %}
+                    {% endif %}
+                </tr>
+                {%endfor%}
             </table>
         </div>
     </div>
 
-    <div class="rightpane">
+    <div class="myaccount-image">
         <div class="pane-title">You can upload your own clicker photo here</div>
 
         <div class="image-form">
