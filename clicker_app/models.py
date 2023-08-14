@@ -31,7 +31,7 @@ class Account(models.Model):
     achievements = models.ManyToManyField(Achievement, blank=True)
     upgrades = models.ManyToManyField(Upgrade, through="OwnsUpgrade")
     darkmode = BooleanField(default=False)
-    image = models.ImageField(upload_to="uploads/", default="../static/images/logo.png")
+    image = models.ImageField(upload_to="uploads/", default="../static/images/default-clicker.svg")
 
     def __str__(self):
         return self.user.username
