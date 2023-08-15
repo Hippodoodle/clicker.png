@@ -494,3 +494,67 @@ input[type=submit]{
     max-width: 100%;
     border: 1px solid var(--text);
 }
+
+/* Login Page */
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 90vh;
+    width: 100vw;
+    background-color: var(--navbar);
+}
+
+.login-card-background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+}
+
+.login-card {
+    width: 300px;
+    background-color: var(--background);
+    padding: 20px;
+    border-radius: 5px;
+    border-top: 4px solid var(--accent);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.login-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.login-card input {
+    padding: 10px;
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid var(--accent);
+}
+
+.login-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.login-button {
+    padding: 10px 20px;
+    background-color: var(--accent);
+    color: var(--background);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+.signup-button {
+    padding: 10px 20px;
+    background-color: var(--background);
+    color: #333;
+    border: 1px solid var(--accent);
+    border-radius: 5px;
+    cursor: pointer;
+  }
