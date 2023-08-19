@@ -7,6 +7,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from clicker_app.models import Achievement, Upgrade, Account, OwnsUpgrade  # noqa: F401
 from django.views import View
+import os
 
 
 def index(request):
@@ -215,7 +216,7 @@ def upload_image(request):
                 new_image = image_form.files["image"]
                 user_account = Account.objects.get(user__id=account_id)
                 old_image = user_account.image
-                if str(old_image) != "../static/images/logo.png":
+                if not os.path.samefile(os.path.join(os.getcwd(), "media", str(old_image)), os.path.join(os.getcwd(), "static/images/default-clicker.svg")):
                     old_image.delete()
                 # TODO: maybe change image name to account_id new_image.name = account_id
                 user_account.image = new_image
