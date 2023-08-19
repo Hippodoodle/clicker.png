@@ -201,6 +201,7 @@ a:visited {
     margin: 5px;
     cursor: pointer;
     background-color: var(--secondary);
+    border: 1px solid var(--accent);
     display: grid;
     grid-template-columns: 45% 10% 45%;
     grid-template-rows: auto;
@@ -252,13 +253,13 @@ a:visited {
 
 .leaderboard th, .leaderboard td {
     width: 10%; /* No idea why this works, but it does */
-    border: 1px solid var(--text);
-    border-collapse: collapse;
+    border: 1px solid var(--accent);
+    overflow-x: hidden;
 }
 
 .leaderboard table {
     width: 100%;
-    border: 1px solid var(--text);
+    max-width: 100%;
     border-collapse: collapse;
 }
 
@@ -282,143 +283,6 @@ a:visited {
 .change-png-message {
     order: 4;
 }
-
-/* table, th, td{
-    border: 1px solid var(--border-color);
-    border-collapse: collapse;
-    position: relative;
-}
-
-th{
-    padding: 5px;
-}
-
-table{
-    padding: 5px;
-    width: 95%;
-    margin-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
-}*/
-
-
-/*.pane-title {
-    text-align: center;
-    margin-top: 10px;
-}
-
-button,
-input[type=submit]{
-    display:inline;
-    text-align: center;
-    border: 2px solid var(--border-color);
-    margin: 5px;
-    font-size: 14pt;
-    color: var(--text-color-2);
-    background-color: var(--color-2);
-    transition: color 0.3s ease;
-}
-
-.purchase_button:hover {
-    background-color: var(--hover-color);
-}
-
-.purchase_button{
-    width: -webkit-fill-available;
-    margin: 0;
-}
-
-#login-central-block {
-    position: fixed;
-    top: 35%;
-    left: 40%;
-    text-align: center;
-}
-
-#login-title{
-    margin: 10px;
-}
-
-#login_form{
-    margin: 0;
-    padding: 5px;
-}
-
-#input-box{
-    padding: 5px;
-}
-
-#login-signup-prompt{
-    position: fixed;
-    left: 10px;
-    bottom: 55px;
-}
-
-#login-socials-block{
-    position: relative;
-    top: 25px;
-    text-align: center;
-}
-
-.socials-logo{
-    width: 40px;
-    padding: 20px;
-    padding-left:15px;
-    padding-right:15px;
-}
-
-.margin15{
-    margin: 15px 15px;
-}
-
-.upload-png{
-    margin:0;
-    padding: 10px;
-    margin-right: 10px;
-    display: flex;
-    flex-direction: column;
-    border: 2px solid var(--border-color);
-}
-
-#icon{
-    bottom: 0%;
-    margin: 15px;
-    width:300px;
-    border: 1px solid var(--border-color);
-    border-radius: 5%;
-    padding: 5px;
-}
-
-.right-centre{
-    text-align: center;
-}
-
-#achievement-table-wrapper {
-    position:relative;
-    margin: 10px;
-}
-
-#achievement-table-scroll {
-    height:200px;
-    overflow:auto;  
-}
-
-#achievement-table-wrapper table {
-    position: relative;
-    margin: 0;
-    width: auto;
-    border:2px solid var(--border-color);
-}
-
-#achievement-table-wrapper th{
-    z-index: 2;
-    padding: 5px;
-    border:2px solid var(--border-color);
-    background-color: var(--color-1);
-    position:sticky;  
-    top: 0; 
-    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
-} */
 
 /* My Account */
 
