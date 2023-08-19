@@ -27,7 +27,7 @@ def index(request):
             upgrade_table_dict[p.upgrade][1] = p.quantity
 
     # TODO: remove list index for whole leaderboard  when scrolling is implememnted
-    leaderboard_list = Account.objects.order_by("-lifetime_points")[:10]
+    leaderboard_list = Account.objects.order_by("-lifetime_points")
 
     ranking_list = Account.objects.order_by("-lifetime_points")
 
