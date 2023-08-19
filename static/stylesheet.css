@@ -166,6 +166,25 @@ a:visited {
     max-height: 100%;
 }
 
+.body-container .middlepane .pane-title {
+    width: 100%;
+}
+
+.stats-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.stats-container .stat {
+    background-color: var(--secondary);
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    border-radius: 0.5em;
+    border: 1px solid var(--accent);
+}
+
 /* Shop */
 
 .shop {
