@@ -41,16 +41,16 @@ Home
             <div class="stats-container">
                 <div class="stat">
                     <span class="points-count">{{ user.account.points }}</span>
-                    <img class="pixels-icon" src="{% static 'images/pixel.svg' %}"/>
+                    <img class="pixels-icon" alt="pixels" src="{% static 'images/pixel.svg' %}"/>
                 </div>
                 <div class="stat">
                     <span class="pixels-per-second">{{ cps }}</span>
-                    <img class="pixels-icon" src="{% static 'images/pixel.svg' %}"/>/s
+                    <img class="pixels-icon"  alt="pixels" src="{% static 'images/pixel.svg' %}"/>/s
                 </div>
                 <div class="stat">
                     <span class="pixels-per-click">{{ upgraded_click }}</span>
-                    <img class="pixels-icon" src="{% static 'images/pixel.svg' %}"/>/
-                    <img class="cursor-icon" src="{% static 'images/cursor.svg' %}"/>
+                    <img class="pixels-icon"  alt="pixels" src="{% static 'images/pixel.svg' %}"/>/
+                    <img class="cursor-icon"  alt="click" src="{% static 'images/cursor.svg' %}"/>
                 </div>
             </div>
         </div>
@@ -67,34 +67,38 @@ Home
     <div class="rightpane">
         <div class="pane-title">LEADERBOARD</div>
 
-        <div class="leaderboard">
-            <table>
-                <tr>
-                    <th>Rank</th>
-                    <th>Username</th>
-                    <th>Score</th>
-                </tr>
-                <tr>
-                    {% for account in ranking_list %} {% if account.user == request.user %}
-                    <td>{{ forloop.counter }}</td>
-                    <td>{{ account.user.username }}</td>
-                    <td><span class="lifetime-points">{{ account.lifetime_points }}</span></td>
-                    {%endif%} {%endfor%}
-                </tr>
-                {% for account in leaderboard %}
-                <tr>
-                    <td>{{ forloop.counter }}</td>
-                    <td>{{ account.user.username }}</td>
-                    <td>
+        <div class="leaderboard-container">
+            <div class="leaderboard">
+                <table>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Username</th>
+                        <th>Score</th>
+                    </tr>
+                    <tr>
+                        {% for account in ranking_list %}
                         {% if account.user == request.user %}
-                            <span class="lifetime-points">{{ account.lifetime_points }}</span>
-                        {%else %}
-                            {{ account.lifetime_points }}
-                        {% endif %}
-                    </td>
-                </tr>
-                {% endfor %}
-            </table>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ account.user.username }}</td>
+                        <td><span class="lifetime-points">{{ account.lifetime_points }}</span></td>
+                        {%endif%}
+                        {%endfor%}
+                    </tr>
+                    {% for account in leaderboard %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ account.user.username }}</td>
+                        <td>
+                            {% if account.user == request.user %}
+                                <span class="lifetime-points">{{ account.lifetime_points }}</span>
+                            {%else %}
+                                {{ account.lifetime_points }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
         </div>
 
         <div class="spacer"></div>

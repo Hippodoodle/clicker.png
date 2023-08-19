@@ -189,7 +189,6 @@ a:visited {
 
 .shop {
     order: 1;
-    height: 85vh;
     width: 100%;
     background-color: var(--background);
     color: var(--text);
@@ -244,11 +243,18 @@ a:visited {
 
 /* Leaderboard */
 
-.leaderboard {
+.leaderboard-container {
     order: 1;
     width: 100%;
     background-color: var(--background);
     color: var(--text);
+    overflow-y: scroll;
+}
+
+.leaderboard table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
 }
 
 .leaderboard th, .leaderboard td {
@@ -257,31 +263,28 @@ a:visited {
     overflow-x: hidden;
 }
 
-.leaderboard table {
-    width: 100%;
-    max-width: 100%;
-    border-collapse: collapse;
-}
-
 .leaderboard tbody {
     display: block;
-    overflow-y: scroll;
 }
 
 .leaderboard th {
     position: sticky;
+    top: 0;
+    background-color: var(--secondary);
 }
 
-.rightpane .stats {
-    order: 2;
+.leaderboard tr:nth-child(2) {
+    position: sticky;
+    top: 23px;
+    background-color: var(--secondary);
 }
 
 .rightpane .spacer {
-    order: 3;
+    order: 2;
 }
 
 .change-png-message {
-    order: 4;
+    order: 3;
 }
 
 /* My Account */
