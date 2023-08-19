@@ -9,34 +9,20 @@
 
 {% block body_block %}
 
-<div id="login-central-block">
-    <h2 id="login-title">Log into your account!</h2>
-    <form id="login_form" method="post" action="{% url 'clicker_app:login' %}">
-        {% csrf_token %}
-        <div class=input-box>
-            Username: <input type="text" name="username" value="" size="50" />
+<div class="login-container">
+    <div class="login-card-background">
+        <div class="login-card">
+            <form method="post" action="{% url 'clicker_app:login' %}">
+                {% csrf_token %}
+                <input type="text" placeholder="Username" name="username">
+                <input type="password" placeholder="Password" name="password">
+                <div class="login-buttons">
+                    <button class="signup-button" onclick="location.href='{% url 'clicker_app:signup' %}'" type="button">Sign Up</button>
+                    <button type="submit" class="login-button">Log In</button>
+                </div>
+            </form>
         </div>
-        <div class=input-box>
-            Password: <input type="password" name="password" value="" size="20" />
-        </div>
-        <input type="submit" value="Log in" size=16 />
-    </form>
-
-    <div id="login-socials-block">
-        <h3>or log in using</h3>
-        <a href="{% url 'social:begin' backend='facebook' %}">
-            <img class="socials-logo" alt="Facebook logo" src="https://upload.wikimedia.org/wikipedia/commons/b/be/Facebook_William_Aditya_Sarana.png" />
-        </a>
-        <a href="{% url 'social:begin' backend='google-oauth2' %}">
-            <img class="socials-logo" alt="Google logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
-        </a>
     </div>
 </div>
 
-<div id="login-signup-prompt">
-    Don't have an account? 
-    <button>
-        <a href="{% url 'clicker_app:signup' %}">Sign up</a>
-    </button>
-</div>
 {% endblock %}

@@ -7,28 +7,37 @@ My Account
 {% endblock %}
 
 {% block body_block %}
-<h2 class="margin15">Welcome back {{user}}!</h2>
+<div class="myaccount-body">
 
-<div id="pain">
-<div>
-<div class="plain">
-    <p>Total pixels earned: {{ user.account.lifetime_points }}</p>
-    <p>Current number of pixels: {{ user.account.points }}</p>
-    <p>Pixels per second: {{ cps }}</p>
-</div>
+    <div class="myaccount-summary-colour">
+        <div class="myaccount-summary">
+            <div class="pane-title">{{user}}</div>
 
-<h3 class="margin15">Your achievements:</h3>
+            <div class="myaccount-stats">
+                <p>Total pixels earned: {{ user.account.lifetime_points }}</p>
+                <p>Current number of pixels: {{ user.account.points }}</p>
+                <p>Pixels per second: {{ cps }}</p>
+            </div>
 
-<div id="achievement-table-wrapper">
-    <div id="achievement-table-scroll">
-        <table>
-            <thead>
+            <div class="darkmode">
+                <form method="POST" action="/clicker_app/darkmode/">
+                    {% csrf_token %}
+                    <input type="hidden" name="user-id" value="{{ user.id }}">
+                    <input type="submit" value="{% if user.account.darkmode %}Lightmode{% else %}Darkmode{% endif %}">
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="myaccount-achievements">
+        <div class="pane-title">Achievements</div>
+
+        <div class="achievements-table-scroll">
+            <table>
                 <tr>
-                    <th><span class="achievement-title">Name</span></th>
-                    <th><span class="achievement-title">Description</span></th>
+                    <th>Name</th>
+                    <th>Description</th>
                 </tr>
-            </thead>
-            <tbody>
                 {% for achievement in all_achievements %}
                 <tr>
                     <td>{{ achievement.name }}</td>
@@ -36,47 +45,37 @@ My Account
                         {% if user.account.points >= achievement.condition %}
                         <td>{{ achievement.description }}</td>
                         {% else %}
-                        <td>?</td>
+                        <td>???</td>
                         {% endif %}
                     {% else %}
                         {% if user.account.lifetime_points >= achievement.condition %}
                         <td>{{ achievement.description }}</td>
                         {% else %}
-                        <td>?</td>
+                        <td>???</td>
                         {% endif %}
                     {% endif %}
                 </tr>
                 {%endfor%}
-            </tbody>
-        </table>
-    </div>
-</div>
-</div>
-
-<div>
-<form method="POST" action="/clicker_app/darkmode/">
-    {% csrf_token %}
-    <input type="hidden" name="user-id" value="{{ user.id }}">
-    <input type="submit" value="{% if user.account.darkmode %}Lightmode{% else %}Darkmode{% endif %}">
-</form>
-
-<div class="upload-png">
-    <h3> You can upload your clicker photo here! </h3>
-    <!--Buttons don't do anything yet. Should be upload, then update photo, then submit. 
-        Or change to just one button upload, then update photo.-->
-    <div class="right-centre margin15">
-        <form method="post" enctype="multipart/form-data" action="{% url 'clicker_app:upload' %}">
-            {% csrf_token %}
-            <input type="hidden" name="user-id" value ="{{ user.id }}">
-            <input type="file" name ="image" value="image" accept="image/*">
-            <input type="submit" name="submit" value="upload">
-        </form>
+            </table>
+        </div>
     </div>
 
-    <div class="bottom0-left0">
-        <img id="icon" alt="Clicker Image" src="{{ MEDIA_URL }}{{ user.account.image }}" />
+    <div class="myaccount-image">
+        <div class="pane-title">You can upload your own clicker photo here</div>
+
+        <div class="image-form">
+            <form method="post" enctype="multipart/form-data" action="{% url 'clicker_app:upload' %}">
+                {% csrf_token %}
+                <input type="hidden" name="user-id" value ="{{ user.id }}">
+                <input type="file" name ="image" value="image" accept="image/*">
+                <input type="submit" name="submit" value="upload">
+            </form>
+        </div>
+
+        <div class="image-preview">
+            <img id="icon" alt="Clicker Image" src="{{ MEDIA_URL }}{{ user.account.image }}" />
+        </div>
     </div>
-</div>
-</div>
+
 </div>
 {% endblock %}

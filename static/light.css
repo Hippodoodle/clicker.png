@@ -1,8 +1,8 @@
 :root {
-    --color-1: #CCE6FF;
-    --color-2: #a8d0f5;
-    --color-3: #d16014;
-    --hover-color: #d16014;
-    --text-color: #111;
-    --border-color: #111;
+    --text: #050505;
+    --background: #fafafa;
+    --primary: #415071;
+    --secondary: #e1dfec;
+    --accent: #6b5da2;
+    --navbar: #0505050d;
 }

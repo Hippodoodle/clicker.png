@@ -1,242 +1,510 @@
 
-h1,h2,h3,h4,h5,h6{
-    font-family: 'Noto Sans JP', sans-serif;
-}
+/* Document Wide */
 
-h1{
-    font-size: 12pt;
-}
-
-h2 {
-    /*width: 100%;*/
-    /*display: inline;*/
-    font-size: 20pt;
-    text-align: center;
-    padding-left: 5px;
-    padding-right: 5px;
-    margin: 0;
-}
-
-h3{
-    font-size: 16pt;
-    margin-top: 0;
-    margin-bottom: 5px;
-}
-
-.plain{
-    display: block;
-    margin:15px 15px;
-}
-
-body{
+body {
     font-family: 'Roboto', sans-serif;
-    background-color: var(--color-1);
     margin: 0;
-    color: var(--text-color);
+    background-color: var(--background);
+    color: var(--text);
 }
 
-a{
-    text-decoration: underline;
-    color: var(--color-3);
+a:visited {
+    color: var(--accent);
 }
 
-#upload-png-message{
-    text-align: center;
-}
+/* Header */
 
-header{
+.header {
+    height: 10vh;
     display: flex;
-    border-bottom: 2px solid var(--border-color);
-    overflow: hidden;
-    padding: 5px;
-}
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: stretch;
 
-.top_right{
-    position: absolute;
-    padding: 15px;
-    margin-right: 15px;
-    right: 15px;
-    vertical-align: top;
-}
-
-button,
-input[type=submit]{
-    display:inline;
-    text-align: center;
-    border: 2px solid var(--border-color);
-    margin: 5px;
-    font-size: 14pt;
-    color: var(--text-color);
-    background-color: var(--color-2);
-    transition: color 0.3s ease;
-}
-
-.purchase_button:hover {
-    background-color: var(--hover-color);
-}
-
-.purchase_button{
-    width: -webkit-fill-available;
+    list-style: none;
     margin: 0;
+    padding: 0;
+    background-color: var(--navbar);
+    /* border-bottom: 2px solid var(--border-color); */
 }
 
-footer{
-    margin-top: 10px;
-    width: 100%;
-    border-top: 2px solid var(--border-color);
-    background-color: var(--color-1);
-}
-
-.foot_link{
-    padding-left: 5px;
-    padding-right: 20px;
-}
-
-#logo {
+.logo {
     font-size: 32pt;
-    padding: 15px;
-}
-
-#pain {
+    margin-left: 5px;
     display: flex;
-    justify-content: space-between;
-}
-
-leftpane table {
-    margin-left: 10px;
-}
-
-middlepane{
-    flex-grow: 1;
-    flex-basis: auto;
+    flex-direction: row;
     align-items: center;
 }
 
-rightpane{
-    flex-grow: 1;
-    flex-basis: auto;
+.logo a {
+    text-decoration: none;
 }
 
-table, th, td{
-    border: 1px solid var(--border-color);
-    border-collapse: collapse;
-    position: relative;
+.logo a:visited {
+    color: var(--text);
 }
 
-th{
-    padding: 5px;
+.logo a img {
+    height: 2em;
 }
 
-table{
-    padding: 5px;
-    width: 95%;
-    margin-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
+.header .spacer {
+    flex: 5;
 }
 
-#clicker{
+.header-link a {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 70%;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    box-sizing: border-box;
+    padding: 2em 1em;
+    height: 10vh;
+    text-decoration: none;
+    font-size: large;
+    font-weight: bold;
+    color: var(--text);
+}
+
+.header-link a:hover {
+    background-color: var(--accent);
+    color: var(--background);
+}
+
+/* Default Pane Behaviour */
+
+.leftpane {
+    order: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.middlepane {
+    order: 2;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.rightpane {
+    order: 3;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .pane-title {
-    text-align: center;
-    margin-top: 10px;
+    order: 0;
+    padding: 0.5em 0;
+    font-weight: bold;
+    font-size: 1.5em;
 }
 
-#login-central-block {
-    position: fixed;
-    top: 35%;
-    left: 40%;
-    text-align: center;
+::-webkit-scrollbar {
+    width: 10px;
+    /* height: 15px; */
 }
 
-#login-title{
-    margin: 10px;
+::-webkit-scrollbar-track {
+    background: var(--secondary);
 }
 
-#login_form{
-    margin: 0;
-    padding: 5px;
+::-webkit-scrollbar-thumb {
+    background: var(--navbar);
 }
 
-#input-box{
-    padding: 5px;
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
 }
 
-#login-signup-prompt{
-    position: fixed;
-    left: 10px;
-    bottom: 55px;
+::-webkit-scrollbar-corner {
+    background: var(--secondary);
 }
 
-#login-socials-block{
-    position: relative;
-    top: 25px;
-    text-align: center;
+/* Game Page */
+
+.body-container {
+    display: flex;
+    justify-content: space-between;
+    height: 90vh;
+    background-color: var(--navbar);
 }
 
-.socials-logo{
-    width: 40px;
-    padding: 20px;
-    padding-left:15px;
-    padding-right:15px;
-}
-
-.margin15{
-    margin: 15px 15px;
-}
-
-.upload-png{
-    margin:0;
+.body-container .leftpane {
+    background-color: var(--background);
+    border-top-right-radius: 20px;
+    max-width: 35vw;
     padding: 10px;
-    margin-right: 10px;
+}
+
+.body-container .middlepane {
+    max-width: 35vw;
+    padding: 10px;
+}
+
+.body-container .rightpane {
+    background-color: var(--background);
+    border-top-left-radius: 20px;
+    text-align: center;
+    max-width: 30vw;
+    padding: 10px;
+}
+
+.body-container .spacer {
+    flex: 5;
+}
+
+.clicker-container {
+    overflow-y: hidden;
+    max-width: 100%;
+    min-width: 50%;
+}
+
+#clicker {
+    width: 100%;
+    max-height: 100%;
+}
+
+.body-container .middlepane .pane-title {
+    width: 100%;
+}
+
+.stats-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.stats-container .stat {
+    background-color: var(--secondary);
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    border-radius: 0.5em;
+    border: 1px solid var(--accent);
+}
+
+/* Shop */
+
+.shop {
+    order: 1;
+    width: 100%;
+    background-color: var(--background);
+    color: var(--text);
+    overflow-y: scroll;
+}
+
+.shop-item {
+    padding: 5px;
+    margin: 5px;
+    cursor: pointer;
+    background-color: var(--secondary);
+    border: 1px solid var(--navbar);
+    display: grid;
+    grid-template-columns: 45% 10% 45%;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "name num effect"
+        "name num price";
+}
+
+.shop-item:hover {
+    background-color: var(--accent);
+    color: var(--background);
+    font-weight: bold;
+}
+
+.shop-item-name {
+    grid-area: name;
+    justify-self: start;
+    align-self: center;
+}
+
+.shop-item-numpurchased {
+    grid-area: num;
+    justify-self: start;
+    align-self: center;
+}
+
+.shop-item-effect {
+    grid-area: effect;
+    justify-self: end;
+    align-self: center;
+    text-align: end;
+}
+
+.shop-item-price {
+    grid-area: price;
+    justify-self: end;
+    align-self: center;
+    text-align: end;
+}
+
+/* Leaderboard */
+
+.leaderboard-container {
+    order: 1;
+    width: 100%;
+    background-color: var(--background);
+    color: var(--text);
+    overflow-y: scroll;
+}
+
+.leaderboard table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.leaderboard th, .leaderboard td {
+    width: 10%; /* No idea why this works, but it does */
+    border: 1px solid var(--navbar);
+    overflow-x: hidden;
+}
+
+.leaderboard tbody {
+    display: block;
+}
+
+.leaderboard th {
+    position: sticky;
+    top: 0;
+    background-color: var(--secondary);
+}
+
+.leaderboard tr:nth-child(2) {
+    position: sticky;
+    top: 23px;
+    background-color: var(--secondary);
+}
+
+.rightpane .spacer {
+    order: 2;
+}
+
+.change-png-message {
+    order: 3;
+}
+
+/* My Account */
+
+.myaccount-body {
+    height: 90vh;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
+    grid-template-areas:
+        "stats image"
+        "achievements image";
+}
+
+.myaccount-summary-colour {
+    background-color: var(--navbar);
+}
+
+.myaccount-summary {
+    height: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    grid-area: stats;
     display: flex;
     flex-direction: column;
-    border: 2px solid var(--border-color);
+    align-items: center;
+    background-color: var(--background);
+    border-top-right-radius: 20px;
 }
 
-#icon{
-    bottom: 0%;
-    margin: 15px;
-    width:300px;
-    border: 1px solid var(--border-color);
-    border-radius: 5%;
+.myaccount-achievements {
     padding: 5px;
+    grid-area: achievements;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.right-centre{
-    text-align: center;
-}
-
-#achievement-table-wrapper {
-    position:relative;
-    margin: 10px;
-}
-
-#achievement-table-scroll {
-    height:200px;
-    overflow:auto;  
-}
-
-#achievement-table-wrapper table {
-    position: relative;
-    margin: 0;
-    width: auto;
-    border:2px solid var(--border-color);
-}
-
-#achievement-table-wrapper th{
-    z-index: 2;
+.myaccount-image {
+    grid-area: image;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 5px;
-    border:2px solid var(--border-color);
-    background-color: var(--color-1);
-    position:sticky;  
-    top: 0; 
-    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+    background-color: var(--navbar);
+    border-bottom-left-radius: 20px;
 }
+
+.myaccount-body .pane-title {
+    order: 0;
+}
+
+/* Top Left */
+
+.myaccount-stats {
+    order: 1;
+}
+
+.darkmode {
+    order: 2;
+}
+
+/* Bottom Left */
+
+.achievements-table-scroll {
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.achievements-table-scroll table, .achievements-table-scroll th, .achievements-table-scroll td {
+    border: 1px solid var(--text);
+    border-collapse: collapse;
+}
+
+.achievements-table-scroll th {
+    position: sticky;
+}
+
+/* Right */
+
+.image-form {
+    padding: 1em 0;
+}
+
+.image-preview {
+    height: 60%;
+    max-width: 90%;
+    object-fit: contain;
+}
+
+.image-preview img {
+    max-height: 100%;
+    max-width: 100%;
+    border: 1px solid var(--text);
+}
+
+/* Login Page */
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 90vh;
+    width: 100vw;
+    background-color: var(--navbar);
+}
+
+.login-card-background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+}
+
+.login-card {
+    width: 300px;
+    background-color: var(--background);
+    padding: 20px;
+    border-radius: 5px;
+    border-top: 4px solid var(--accent);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.login-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.login-card input {
+    padding: 10px;
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid var(--accent);
+}
+
+.login-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.login-container .login-button {
+    padding: 10px 20px;
+    background-color: var(--accent);
+    color: var(--background);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .login-container .signup-button {
+    padding: 10px 20px;
+    background-color: var(--background);
+    color: #333;
+    border: 1px solid var(--accent);
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+/* Signup Page */
+
+.signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 90vh;
+    width: 100vw;
+    background-color: var(--navbar);
+}
+
+.signup-card-background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+}
+
+.signup-card {
+    width: 300px;
+    background-color: var(--background);
+    padding: 20px;
+    border-radius: 5px;
+    border-top: 4px solid var(--accent);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.signup-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.signup-card input {
+    padding: 10px;
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid var(--accent);
+}
+
+.signup-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.signup-container .signup-button {
+    padding: 10px 20px;
+    background-color: var(--accent);
+    color: var(--background);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+.signup-container .login-button {
+    padding: 10px 20px;
+    background-color: var(--background);
+    color: #333;
+    border: 1px solid var(--accent);
+    border-radius: 5px;
+    cursor: pointer;
+  }

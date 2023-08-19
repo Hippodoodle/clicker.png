@@ -24,43 +24,34 @@
 </head>
 
 <body>
-    <header>
-        <img src="{% static 'images/logo.jpg' %}" width="95" height="71" alt="Logo" style="padding: 15px;" />
-        <h1><span id="logo">Clicker.png</span></h1>
-        <div class="top_right">
-            {% block top_right %}
-            {% if user.is_authenticated %}
-    
-            <h3>Welcome back {{ user }}!</h3>
-            <a href="{% url 'clicker_app:myaccount' %}">My Account</a>
-            <a href="{% url 'clicker_app:logout' %}">Log out</a>
-    
-            {% else %}
-            <button>
-                <a href="{% url 'clicker_app:login' %}">Log in</a>
-            </button>
-            or
-            <button>
-                <a href="{% url 'clicker_app:signup' %}">Sign up</a>
-            </button>
-            {% endif %}
-            {% endblock %}
-        </div>
-    </header>
+    <ul class="header">
+        <li class="logo">
+            <a href="{% url 'clicker_app:index' %}">
+                <img src="{% static 'images/logo.png' %}" alt="Logo" />
+            </a>
+            <a href="{% url 'clicker_app:index' %}">
+                Clicker.png
+            </a>
+        </li>
+        <li class="spacer"></li>
+        <li class="header-link"><a href="{% url 'clicker_app:index' %}">Home</a></li>
+        <li class="header-link"><a href="{% url 'clicker_app:about' %}">About</a></li>
+        <li class="header-link"><a href="{% url 'clicker_app:tutorial' %}">Tutorial</a></li>
+
+        {% block top_right %}
+        {% if user.is_authenticated %}
+        <li class="header-link"><a href="{% url 'clicker_app:myaccount' %}">My Account</a></li>
+        <li class="header-link"><a href="{% url 'clicker_app:logout' %}">Log out</a></li>
+        {% else %}
+        <li class="header-link"><a href="{% url 'clicker_app:login' %}">Log in</a></li>
+        <li class="header-link"><a href="{% url 'clicker_app:signup' %}">Sign up</a></li>
+        {% endif %}
+        {% endblock %}
+    </ul>
 
     {% block body_block %}
     default block
     {% endblock %}
-
-    <footer>
-        <h1>
-            <span class="foot_link"><a href="{% url 'clicker_app:index' %}">Homepage</a></span>
-            <span class="foot_link"><a href="{% url 'clicker_app:about' %}">About</a></span>
-            <span class="foot_link"><a href="{% url 'clicker_app:tutorial' %}">Tutorial</a></span>
-        </h1>
-    </footer>
-
-
 </body>
 
 </html>
